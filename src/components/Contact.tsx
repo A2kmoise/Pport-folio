@@ -7,25 +7,25 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6 text-primary" />,
       title: "Email",
-      value: "your.email@example.com",
-      href: "mailto:your.email@example.com"
+      value: "abayomoise950@gmail.com",
+      href: "mailto:abayomoise950@gmail.com"
     },
     {
       icon: <Linkedin className="w-6 h-6 text-primary" />,
       title: "LinkedIn",
-      value: "linkedin.com/in/yourprofile",
-      href: "https://linkedin.com/in/yourprofile"
+      value: "https://linkedin.com/in/ABAYO Moise",
+      href: "https://linkedin.com/in/ABAYO Moise"
     },
     {
       icon: <Github className="w-6 h-6 text-primary" />,
       title: "GitHub",
-      value: "github.com/yourusername",
-      href: "https://github.com/yourusername"
+      value: "github.com/A2kdev",
+      href: "https://github.com/A2kdev"
     },
     {
       icon: <MapPin className="w-6 h-6 text-primary" />,
       title: "Location",
-      value: "Your City, Country",
+      value: "Bugesera, Rwanda",
       href: null
     }
   ];
@@ -78,7 +78,7 @@ const Contact = () => {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-card-foreground">Ready to Start a Project?</CardTitle>
             <CardDescription className="text-muted-foreground">
-              Whether you need a full-stack application, security audit, or technical consultation
+              Whether you need a full-stack application, security audit, or need to hire me for any software engineering job.
             </CardDescription>
           </CardHeader>
           <CardContent className="text-center">

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Server, Globe, Shield, Database, Code, Layers } from "lucide-react";
+import { Button } from "./ui/button";
 
 const Skills = () => {
   const techStacks = [
@@ -29,7 +30,7 @@ const Skills = () => {
       icon: <Database className="w-8 h-8 text-tech-spring" />,
       title: "Database & Infrastructure",
       description: "Data management and cloud deployment",
-      skills: ["PostgreSQL", "MongoDB", "AWS", "Redis", "Kubernetes"],
+      skills: ["PostgreSQL", "MongoDB", "Mysql"],
       color: "tech-spring"
     }
   ];
@@ -39,7 +40,7 @@ const Skills = () => {
       <div className="container max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
-            Technical Expertise
+          Skills && Projects
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Full-stack proficiency across modern web technologies and frameworks
@@ -76,7 +77,12 @@ const Skills = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
+          </div>
+          <div className="text-center mt-10">
+            <Button variant="outline" className="border-primary/50 hover:border-primary">
+            View my projects
+          </Button>
+           </div>  
       </div>
     </section>
   );
