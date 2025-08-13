@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";  
 import heroImage from "@/assets/hero-bg.jpg"; 
 import profileImage from "@/assets/profile.jpg";
+import ContactModal from "./ContactModal";  
+import { useState } from "react";
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
       
@@ -53,20 +57,18 @@ const Hero = () => {
             </a>
           </Button>
 
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="border-primary/50 hover:border-primary"
-            asChild
-          >
-            <a href="mailto:abayo@example.com" aria-label="Contact Me">
-              <Mail className="w-5 h-5" />
-              Contact Me
-            </a>
-          </Button>
+<Button 
+  variant="outline" 
+  size="lg" 
+  className="border-primary/50 hover:border-primary"
+  onClick={() => setIsModalOpen(true)}
+>
+  <Mail className="w-5 h-5" />
+  Contact Me
+</Button>
+
         </div>
 
-        {/* Social icons */}
         <div className="flex gap-6 justify-center">
           <a 
             href="https://github.com/A2kmoise" 
@@ -79,7 +81,7 @@ const Hero = () => {
             </Button>
           </a>
           <a 
-            href="https://linkedin.com/in/ABAYO Moise" 
+            href="https://rw.linkedin.com/in/abayo-moise-3568b7377" 
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="LinkedIn"
@@ -98,6 +100,9 @@ const Hero = () => {
           </a>
         </div>
       </div>
+
+      
+  <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

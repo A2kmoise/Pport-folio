@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Linkedin, Github, MapPin, Phone } from "lucide-react";
+import { useState } from "react";
+import ContactModal from "./ContactModal";
 
 const Contact = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const contactMethods = [
     {
       icon: <Mail className="w-6 h-6 text-primary" />,
@@ -83,10 +86,15 @@ const Contact = () => {
           </CardHeader>
           <CardContent className="text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg">
-                <Mail className="w-5 h-5" />
-                Send Message
-              </Button>
+<Button 
+  variant="hero" 
+  size="lg"
+  onClick={() => setIsModalOpen(true)}  
+>
+  <Mail className="w-5 h-5" />
+  Send Message
+</Button>
+
               <Button variant="outline" size="lg" className="border-primary/50 hover:border-primary">
                 <Phone className="w-5 h-5" />
                 Schedule Call
@@ -95,6 +103,8 @@ const Contact = () => {
           </CardContent>
         </Card>
       </div>
+
+      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

@@ -2,21 +2,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Server, Globe, Shield, Database, Code, Layers } from "lucide-react";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Skills = () => {
+  const navigate = useNavigate();
   const techStacks = [
     {
       icon: <Globe className="w-8 h-8 text-tech-react" />,
       title: "Frontend Development",
       description: "Building responsive, interactive user interfaces",
-      skills: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Redux"],
+      skills: ["React", "TypeScript", "Tailwind CSS", "Bootstrap CSS", "Next.js", "Redux"],
       color: "tech-react"
     },
     {
       icon: <Server className="w-8 h-8 text-tech-node" />,
       title: "Backend Development",
       description: "Scalable server-side applications and APIs",
-      skills: ["Express.js", "Node.js", "RESTful APIs", "GraphQL", "WebSocket"],
+      skills: ["Express.js", "Node.js", "RESTful APIs", "GraphQL", "WebSocket", "PHP", "laravel", "Django"],
       color: "tech-node"
     },
     {
@@ -79,7 +81,7 @@ const Skills = () => {
           ))}
           </div>
           <div className="text-center mt-10">
-            <Button variant="outline" className="border-primary/50 hover:border-primary">
+            <Button variant="outline" className="border-primary/50 hover:border-primary" onClick={() => navigate("/projects")}>
             View my projects
           </Button>
            </div>  

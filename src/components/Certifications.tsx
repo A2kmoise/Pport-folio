@@ -2,8 +2,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Shield, Award, Lock, Eye, ExternalLink } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
+  
 const Certifications = () => {
+  const navigate = useNavigate();
   const certifications = [
     {
       icon: <Shield className="w-8 h-8 text-tech-security" />,
@@ -113,7 +115,7 @@ const Certifications = () => {
           <p className="text-muted-foreground mb-6">
             Continuously learning and staying updated with the latest security trends and technologies
           </p>
-          <Button variant="outline" className="border-primary/50 hover:border-primary">
+          <Button variant="outline" className="border-primary/50 hover:border-primary" onClick={() => navigate("/certificates")}>
             View All Certifications
           </Button>
         </div>
