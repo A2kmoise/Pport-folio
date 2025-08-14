@@ -18,7 +18,7 @@ const ProjectPage = () => {
         title: "E-commerce API",
         image: ecommerceAPI,
         description: "A RESTful API for an e-commerce platform, enabling product management, user authentication, and order processing with over 17 endpoints.",
-        technologies: ["Spring Boot", "Java", "PostgreSQL", "JWT"]
+        technologies: ["Nest.js", "Node.js", "PostgreSQL", "JWT"]
       },
       {
         title: "SnapLink",
