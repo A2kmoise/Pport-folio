@@ -51,7 +51,7 @@ const Hero = () => {
             className="animate-glow-pulse"
             asChild
           >
-            <a href="/AbayoMoise_CV.pdf" download aria-label="Download CV">
+            <a href="/CV.pdf" download aria-label="Download CV">
               <Download className="w-5 h-5" />
               Download CV
             </a>
