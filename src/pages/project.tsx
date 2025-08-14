@@ -1,7 +1,7 @@
 import React from "react";
 import publicPulse from "@/assets/publicPulse.png";
 import ecommerceAPI from "@/assets/e-commerce.png";
-import snapLink from "@/assets/snapLink.png";
+import snapLink from "@/assets/snaplink.png";
 import { useNavigate } from "react-router-dom";
 
 const ProjectPage = () => {
