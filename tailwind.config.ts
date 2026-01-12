@@ -10,6 +10,10 @@ export default {
 	],
 	prefix: "",
 	theme: {
+		fontFamily: {
+			sans: ["Geist", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+			mono: ["Geist Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+		},
 		container: {
 			center: true,
 			padding: {

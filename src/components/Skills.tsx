@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Server, Globe, Shield, Database, Code, Layers } from "lucide-react";
+import { Smartphone, Server, Package, Database, Zap, Shield } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -8,69 +8,89 @@ const Skills = () => {
   const navigate = useNavigate();
   const techStacks = [
     {
-      icon: <Globe className="w-8 h-8 text-tech-react" />,
+      icon: <Smartphone className="w-10 h-10 text-tech-react" />,
       title: "Frontend Development",
       description: "Building responsive, interactive user interfaces",
       skills: ["React", "TypeScript", "Tailwind CSS", "Bootstrap CSS", "Next.js", "Redux"],
       color: "tech-react"
     },
     {
-      icon: <Server className="w-8 h-8 text-tech-node" />,
+      icon: <Server className="w-10 h-10 text-tech-node" />,
       title: "Backend Development",
       description: "Scalable server-side applications and APIs",
       skills: ["Express.js", "Node.js", "RESTful APIs", "GraphQL", "WebSocket", "PHP", "Laravel", "Django"],
       color: "tech-node"
     },
     {
-      icon: <Layers className="w-8 h-8 text-tech-nest" />,
-      title: "Enterprise Frameworks",
-      description: "Enterprise-grade applications and microservices",
-      skills: ["NestJS", "Spring Boot", "Java", "Microservices", "Docker"],
+      icon: <Zap className="w-10 h-10 text-tech-nest" />,
+      title: "Mobile Development",
+      description: "Cross-platform and native mobile applications",
+      skills: ["React Native", "Swift", "Expo"],
       color: "tech-nest"
     },
     {
-      icon: <Database className="w-8 h-8 text-tech-spring" />,
+      icon: <Package className="w-10 h-10 text-tech-spring" />,
+      title: "Enterprise Frameworks",
+      description: "Enterprise-grade applications and microservices",
+      skills: ["NestJS", "Spring Boot", "Java", "Microservices", "Docker"],
+      color: "tech-spring"
+    },
+    {
+      icon: <Database className="w-10 h-10 text-tech-security" />,
       title: "Database & Infrastructure",
       description: "Data management and cloud deployment",
-      skills: ["PostgreSQL", "MongoDB", "MySQL"],
-      color: "tech-spring"
+      skills: ["PostgreSQL", "MongoDB", "MySQL", "AWS", "Google Cloud"],
+      color: "tech-security"
+    },
+    {
+      icon: <Shield className="w-10 h-10 text-primary" />,
+      title: "Cybersecurity",
+      description: "Security-first development and infrastructure hardening",
+      skills: ["Ethical Hacking", "Penetration Testing", "Security Audits"],
+      color: "primary"
     }
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-secondary">
-      <div className="container max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent leading-tight">
-            Skills & Projects
+    <section className="py-12 sm:py-14 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="container max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center mb-8 sm:mb-10 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-tight">
+            Skills & Expertise
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
             Full-stack proficiency across modern web technologies and frameworks
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
           {techStacks.map((stack, index) => (
-            <Card 
-              key={index} 
-              className="bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 hover:shadow-card group h-full"
+            <Card
+              key={index}
+              className="bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/60 transition-all duration-500 hover:shadow-glow group h-full overflow-hidden animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardHeader className="text-center pb-4">
-                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <CardHeader className="pb-2 sm:pb-3 relative z-10">
+                <div className="mb-2 flex justify-center group-hover:scale-110 transition-transform duration-500">
                   {stack.icon}
                 </div>
-                <CardTitle className="text-xl text-card-foreground mb-2">{stack.title}</CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed">
+                <CardTitle className="text-base sm:text-lg text-card-foreground mb-1 font-bold text-center">{stack.title}</CardTitle>
+                <CardDescription className="text-muted-foreground leading-relaxed text-xs text-center">
                   {stack.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="pt-0">
-                <div className="flex flex-wrap gap-2 justify-center">
+              <CardContent className="pt-0 relative z-10">
+                <div className="flex flex-wrap gap-1 sm:gap-2 justify-center">
                   {stack.skills.map((skill, skillIndex) => (
-                    <Badge 
+                    <Badge
                       key={skillIndex}
                       variant="secondary"
-                      className="bg-secondary/50 text-secondary-foreground hover:bg-primary/20 hover:text-primary transition-colors duration-200 text-xs sm:text-sm"
+                      className="bg-primary/10 text-primary border border-primary/20 hover:bg-primary/15 hover:border-primary/35 hover:shadow-sm transition-all duration-200 text-xs font-medium"
                     >
                       {skill}
                     </Badge>
@@ -80,16 +100,18 @@ const Skills = () => {
             </Card>
           ))}
         </div>
-        
-        <div className="text-center mt-10 sm:mt-12">
-          <Button 
-            variant="outline" 
-            className="border-primary/50 hover:border-primary transition-all duration-200" 
+
+        <div className="text-center animate-fade-in">
+          <Button
+            variant="hero"
+            size="sm"
+            className="font-semibold px-5 py-2 text-xs shadow-lg hover:shadow-glow-lg transition-all duration-300"
             onClick={() => navigate("/projects")}
           >
-            View my projects
+            <Zap className="w-3 h-3 mr-2" />
+            View All Projects
           </Button>
-        </div>  
+        </div>
       </div>
     </section>
   );
