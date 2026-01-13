@@ -32,7 +32,7 @@ const CertificatePage = () => {
         </button>
 
         <div className="text-center mb-16 sm:mb-20 animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-primary leading-tight tracking-tight">
             Cybersecurity Certificates
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
@@ -45,10 +45,10 @@ const CertificatePage = () => {
           {certificates.map((cert, index) => (
             <div
               key={index}
-              className="group relative bg-card/40 backdrop-blur-md border border-border/50 rounded-xl p-6 sm:p-8 transition-all duration-500 hover:border-tech-security/60 hover:shadow-glow h-full flex flex-col overflow-hidden animate-fade-in"
+              className="group relative bg-card border border-border rounded-xl p-6 sm:p-8 transition-all duration-500 hover:border-tech-security/60 hover:shadow-tech-security/20 h-full flex flex-col overflow-hidden animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-tech-security/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-tech-security/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
                 <div className="mb-6 flex flex-col sm:flex-row sm:items-start sm:gap-4">

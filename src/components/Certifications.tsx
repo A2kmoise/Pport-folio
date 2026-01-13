@@ -52,7 +52,7 @@ const Certifications = () => {
 
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-8 sm:mb-10 animate-fade-in">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary leading-tight tracking-tight">
             Cybersecurity Certifications
           </h2>
           <p className="text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
@@ -67,8 +67,8 @@ const Certifications = () => {
               className="bg-card/40 backdrop-blur-md border border-border/50 hover:border-tech-security/60 transition-all duration-500 hover:shadow-glow group relative overflow-hidden h-full animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-tech-security/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-br from-tech-security/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-tech-security/10 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-tech-security/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <CardHeader className="pb-2 sm:pb-3 relative z-10">
                 <div className="flex items-start justify-between mb-2">

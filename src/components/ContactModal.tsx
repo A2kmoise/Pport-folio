@@ -1,5 +1,5 @@
-import React from "react";
 import { X } from "lucide-react";
+import { toast } from "sonner";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -11,7 +11,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for contacting us!");
+    toast.success("Thank you! Your message has been sent successfully.");
     onClose();
   };
 
@@ -84,7 +84,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
           <button
             type="submit"
-            className="w-full py-3 px-4 bg-gradient-primary text-white rounded-lg hover:shadow-glow transition-all duration-300 font-semibold text-base flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-card"
+            className="w-full py-3 px-4 bg-primary text-white rounded-lg hover:shadow-glow transition-all duration-300 font-semibold text-base flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-card"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

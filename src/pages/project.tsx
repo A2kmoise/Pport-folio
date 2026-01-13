@@ -35,7 +35,7 @@ const ProjectPage = () => {
       github: "https://github.com/A2kmoise/url-shortener",
       demo: "#"
     },
-        {
+    {
       title: "Lumina",
       image: Lumina,
       description: "A mobile app linking farmers and drivers in Rwanda to facilitate transportation and logistics (Backend).",
@@ -43,7 +43,7 @@ const ProjectPage = () => {
       github: "https://github.com/A2kmoise/Lumina-API",
       demo: "#"
     },
-        {
+    {
       title: "SupaMenu",
       image: supaMenu,
       description: "An ios mobile app for ordering food to the nearest restaurant.",
@@ -68,7 +68,7 @@ const ProjectPage = () => {
         </button>
 
         <div className="text-center mb-16 sm:mb-20 animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-primary leading-tight tracking-tight">
             My Projects
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
@@ -80,13 +80,13 @@ const ProjectPage = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group relative bg-card/40 backdrop-blur-md border border-border/50 rounded-xl p-6 sm:p-7 transition-all duration-500 hover:border-primary/60 hover:shadow-glow h-full flex flex-col overflow-hidden animate-fade-in opacity-0"
+              className="group relative bg-card border border-border rounded-xl p-6 sm:p-7 transition-all duration-500 hover:border-primary/60 hover:shadow-primary/20 h-full flex flex-col overflow-hidden animate-fade-in opacity-0"
               style={{ animationDelay: `${index * 100}ms`, animation: `fadeIn 0.6s ease-out ${index * 100}ms forwards` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
-                <h2 className="text-xl sm:text-2xl font-bold text-card-foreground mb-4 relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[3px] after:bg-gradient-primary after:w-0 group-hover:after:w-full after:transition-all after:duration-500">
+                <h2 className="text-xl sm:text-2xl font-bold text-card-foreground mb-4 relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[3px] after:bg-primary after:w-0 group-hover:after:w-full after:transition-all after:duration-500">
                   {project.title}
                 </h2>
                 <div className="mb-6 flex-shrink-0 overflow-hidden rounded-lg">

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Linkedin, Github, MapPin } from "lucide-react";
 import ContactForm from "./ContactForm";
 
@@ -36,13 +36,13 @@ const Contact = ({ isModalOpen = false, setIsModalOpen = () => { } }: ContactPro
   ];
 
   return (
-    <section className="py-8 sm:py-10 bg-background relative overflow-hidden">
+    <section className="py-8 sm:py-10 bg-background overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
-      <div className="container max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container max-w-6xl mx-auto px-4 sm:px-6  z-10">
         <div className="text-center mb-8 animate-fade-in">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary leading-tight tracking-tight">
             Let's Connect
           </h2>
           <p className="text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
@@ -56,10 +56,10 @@ const Contact = ({ isModalOpen = false, setIsModalOpen = () => { } }: ContactPro
             {contactMethods.map((method, index) => (
               <Card
                 key={index}
-                className="bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/60 transition-all duration-500 hover:shadow-glow group overflow-hidden animate-fade-in"
+                className="bg-card border border-border hover:border-primary/60 transition-all duration-500 hover:shadow-primary/20 group overflow-hidden animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <CardContent className="p-4 relative z-10 h-full flex flex-col justify-center">
                   <div className="flex items-center space-x-3">

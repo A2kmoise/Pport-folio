@@ -9,7 +9,7 @@ const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden pt-24 sm:pt-32 pb-10">
+    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden pt-24 sm:pt-32 pb-10">
 
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
@@ -17,35 +17,35 @@ const Hero = () => {
         aria-hidden="true"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/70 to-background/85" />
-
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50 animate-pulse" />
+      <div className="absolute inset-0 bg-background/80" />
+    
+      <div className="absolute top-50 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50 animate-pulse" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-50 animate-pulse animation-delay-2000" />
 
       {/* Floating animated shapes */}
-      <div className="absolute top-20 right-20 w-64 h-64 border border-primary/20 rounded-full animate-float" />
+      <div className="absolute top-40 right-20 w-64 h-64 border border-primary/20 rounded-full animate-float" />
       <div className="absolute bottom-32 left-10 w-48 h-48 border border-accent/20 rounded-full animate-float animation-delay-1000" style={{ animationDirection: 'reverse' }} />
 
       <div className="relative z-10 container max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <div className="flex flex-col items-center md:flex-row md:justify-center gap-6 mb-8 md:mb-8 animate-float">
           <div className="order-2 md:order-1">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-tight" style={{ animationDuration: '3s' }}>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary leading-tight tracking-tight" style={{ animationDuration: '3s' }}>
               ABAYO Moise
             </h1>
           </div>
           <img
             src={profileImage}
-            alt="ABAYO Moise - Full-Stack Developer and Cybersecurity Expert"
+            alt="ABAYO Moise - Full-Stack Developer and Cybersecurity Enthusiast"
             className="order-1 md:order-2 w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full object-cover border-4 border-primary shadow-2xl hover:shadow-glow-lg transition-all duration-300 ring-4 ring-primary/20"
           />
         </div>
 
         <div className="animate-fade-in animation-delay-300">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 md:mb-4 bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-tight hover:animate-pulse transition-all duration-300 cursor-default">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 md:mb-4 text-primary leading-tight tracking-tight hover:animate-pulse transition-all duration-300 cursor-default">
             Full-Stack Developer
           </h2>
           <h3 className="text-lg sm:text-2xl md:text-3xl text-primary/80 mb-6 md:mb-8 font-semibold animate-fade-in animation-delay-500">
-            & Cybersecurity Expert
+            & Cybersecurity Enthusiast
           </h3>
           <p className="text-base sm:text-lg md:text-xl text-foreground/85 mb-10 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 font-light hover:text-foreground transition-colors duration-300">
             Crafting secure, scalable solutions with modern technologies.

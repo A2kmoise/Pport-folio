@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 interface ContactFormProps {
     className?: string;
@@ -24,17 +25,19 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
         e.preventDefault();
         // Here you would typically send the form data to a server
         console.log("Form submitted:", formData);
-        setSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
 
-        // Reset success message after 3 seconds
-        setTimeout(() => setSubmitted(false), 3000);
+        toast.success("Message sent successfully! I'll get back to you soon.", {
+            description: "Thanks for reaching out!",
+            duration: 5000,
+        });
+
+        setFormData({ name: "", email: "", message: "" });
     };
 
     return (
         <div className={className}>
-            <div className="bg-card/40 backdrop-blur-md border border-border/50 rounded-xl p-5 sm:p-6 overflow-hidden relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/5 opacity-50" />
+            <div className="bg-card border border-border rounded-xl p-5 sm:p-6 overflow-hidden relative">
+                <div className="absolute inset-0 bg-primary/10 opacity-50" />
 
                 <div className="relative z-10">
                     <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">Send a Message</h3>
@@ -42,13 +45,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
                         Get in touch and let me know how I can help you.
                     </p>
 
-                    {submitted && (
-                        <div className="mb-4 p-3 bg-success/10 border border-success/30 rounded-lg">
-                            <p className="text-success font-medium text-xs">
-                                ✓ Thank you for your message! I'll get back to you soon.
-                            </p>
-                        </div>
-                    )}
+
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
@@ -101,7 +98,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
 
                         <button
                             type="submit"
-                            className="w-full py-2.5 px-3 bg-gradient-primary text-white rounded-lg hover:shadow-glow transition-all duration-300 font-semibold text-sm flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-card"
+                            className="w-full py-2.5 px-3 bg-primary text-white rounded-lg hover:shadow-glow transition-all duration-300 font-semibold text-sm flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-card"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

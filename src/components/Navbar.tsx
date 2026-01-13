@@ -42,37 +42,47 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
     };
 
     useEffect(() => {
-        // Only use scroll spy on home page
+        // Handle routes that aren't the home page
         if (location.pathname !== "/") {
             if (location.pathname === "/projects") {
                 setActiveSection("projects");
             } else if (location.pathname === "/certificates") {
                 setActiveSection("certificates");
+            } else {
+                setActiveSection("");
             }
             return;
         }
 
-        // Scroll spy for home page sections
-        const handleScroll = () => {
-            const sections = ["home", "skills", "certifications", "contact"];
-            let currentSection = "home";
+        const sections = ["home", "skills", "certifications", "contact"];
 
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    // Check if section is in the upper portion of the viewport
-                    if (rect.top <= 100) {
-                        currentSection = section;
-                    }
-                }
-            }
-
-            setActiveSection(currentSection);
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px', // Adjusted to trigger when section is in the upper-mid viewport
+            threshold: 0
         };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        sections.forEach((id) => {
+            const element = document.getElementById(id);
+            if (element) observer.observe(element);
+        });
+
+        return () => {
+            sections.forEach((id) => {
+                const element = document.getElementById(id);
+                if (element) observer.unobserve(element);
+            });
+        };
     }, [location.pathname]);
 
     const navLinks = [
@@ -105,7 +115,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
                     <Link
                         to="/"
                         onClick={() => setActiveSection("home")}
-                        className="text-xl sm:text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:opacity-80 transition-opacity duration-300"
+                        className="text-xl sm:text-2xl font-bold text-primary hover:opacity-80 transition-opacity duration-300"
                     >
                         A2kdev
                     </Link>
@@ -123,7 +133,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
                                     }`}
                             >
                                 {link.label}
-                                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-primary group-hover:w-full transition-all duration-300" />
+                                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300" />
                             </Link>
                         ))}
                     </div>

@@ -94,7 +94,7 @@ const Stats = () => {
 
             <div className="container max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
                 <div className="text-center mb-8 sm:mb-10 animate-fade-in">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary">
                         Experience
                     </h2>
                     <p className="text-muted-foreground text-xs sm:text-sm">
