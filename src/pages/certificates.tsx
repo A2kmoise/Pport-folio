@@ -18,70 +18,84 @@ const CertificatePage = () => {
   ];
 
   return (
-    <div className="min-h-screen px-4 py-8 sm:py-16 bg-background text-foreground relative overflow-hidden pt-20 sm:pt-24">
-      <div className="absolute top-20 right-0 w-96 h-96 bg-tech-security/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+    <div className="min-h-screen px-6 py-24 bg-background text-foreground relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-      <div className="max-w-5xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <button
-          className="mt-20 sm:mt-24 mb-8 text-sm text-primary hover:text-primary-glow font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-3 py-2 hover:bg-primary/10 group"
           onClick={() => navigate(-1)}
-          aria-label="Go back to previous page"
+          className="mb-16 text-[10px] tracking-[0.3em] uppercase text-primary hover:text-primary/70 font-medium transition-all duration-300 flex items-center gap-4 group"
         >
-          <span className="group-hover:-translate-x-1 transition-transform duration-300 inline-block">←</span> Go Back
+          <span className="group-hover:-translate-x-2 transition-transform duration-500">←</span>
+          BACK TO PORTFOLIO
         </button>
 
-        <div className="text-center mb-16 sm:mb-20 animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-primary leading-tight tracking-tight">
-            Cybersecurity Certificates
+        <div className="text-center mb-24 animate-fade-in">
+          <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
+            Credentials
+          </p>
+          <h1 className="text-5xl sm:text-7xl font-serif text-primary mb-8 tracking-tight">
+            CyberSecurity <span className="italic opacity-80">Certifications</span>
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-            Here you can find a selection of my cybersecurity certificates,
-            showcasing my skills and expertise in this field.
+          <div className="w-24 h-px bg-primary/30 mx-auto mb-8" />
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-xl italic">
+            "A commitment to excellence and continuous technical advancement."
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-16">
           {certificates.map((cert, index) => (
             <div
               key={index}
-              className="group relative bg-card border border-border rounded-xl p-6 sm:p-8 transition-all duration-500 hover:border-tech-security/60 hover:shadow-tech-security/20 h-full flex flex-col overflow-hidden animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group flex flex-col animate-fade-in"
+              style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="absolute inset-0 bg-tech-security/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative z-10">
-                <div className="mb-6 flex flex-col sm:flex-row sm:items-start sm:gap-4">
-                  <div className="p-3 bg-tech-security/20 rounded-lg group-hover:scale-120 group-hover:bg-tech-security/30 transition-all duration-500 flex-shrink-0 w-fit">
-                    {cert.icon}
-                  </div>
-                  <div className="mt-4 sm:mt-0 flex-1">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-card-foreground mb-2">
-                      {cert.title}
-                    </h2>
-                    <p className="text-sm text-muted-foreground font-medium">
-                      <span className="text-foreground font-semibold">{cert.issuer}</span> • {cert.date}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mb-6 overflow-hidden rounded-lg border border-border/30">
+              {/* Certificate Image Box */}
+              <div className="relative overflow-hidden mb-8 border border-primary/10 group-hover:border-primary/40 transition-all duration-1000">
+                <div className="aspect-[4/3]">
                   <img
                     src={cert.image}
                     alt={cert.title}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-1000 ease-in-out"
                   />
                 </div>
+                <div className="absolute inset-0 bg-background/5 opacity-80 group-hover:opacity-0 transition-opacity duration-1000" />
+              </div>
 
-                <p className="text-sm text-foreground/85 leading-relaxed flex-grow font-light mb-6">
+              {/* Certificate Details */}
+              <div className="space-y-6 px-2">
+                <div className="flex items-start justify-between border-b border-primary/10 pb-4">
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-serif italic text-primary group-hover:text-primary transition-colors duration-500 leading-tight">
+                      {cert.title}
+                    </h2>
+                    <p className="text-[10px] tracking-[0.2em] uppercase font-medium text-foreground/40">
+                      {cert.issuer} • {cert.date}
+                    </p>
+                  </div>
+                  <div className="text-primary/40 group-hover:text-primary transition-colors duration-500">
+                    {/* Applying primary color to the icon */}
+                    {Object.assign({}, cert.icon, {
+                      props: { ...cert.icon.props, className: "w-8 h-8" }
+                    })}
+                  </div>
+                </div>
+
+                <p className="text-foreground/60 leading-relaxed font-sans text-lg italic pr-8">
                   {cert.description}
                 </p>
 
-                <div className="pt-6 border-t border-border/50">
-                  <span className="text-xs bg-success/25 text-success px-4 py-2 rounded-full border border-success/40 font-semibold inline-flex items-center gap-2">
-                    <Award className="w-3.5 h-3.5" />
-                    Verified Certificate
+                <div className="pt-4 flex items-center justify-between">
+                  <span className="text-[10px] tracking-[0.3em] uppercase font-bold text-success/70 flex items-center gap-3">
+                    <Award className="w-4 h-4" />
+                    VERIFIED CREDENTIAL
                   </span>
+
+                  <button className="text-[10px] tracking-[0.3em] uppercase font-bold text-primary/60 hover:text-primary transition-colors duration-300">
+                    VIEW ORIGINAL
+                  </button>
                 </div>
               </div>
             </div>

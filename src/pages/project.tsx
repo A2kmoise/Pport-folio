@@ -54,83 +54,96 @@ const ProjectPage = () => {
   ];
 
   return (
-    <div className="min-h-screen px-4 py-8 sm:py-16 bg-background text-foreground relative overflow-hidden pt-20 sm:pt-24">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+    <div className="min-h-screen px-6 py-24 bg-background text-foreground relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <button
           onClick={() => navigate(-1)}
-          className="mt-20 sm:mt-24 mb-8 text-sm text-primary hover:text-primary-glow font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-3 py-2 hover:bg-primary/10 group"
-          aria-label="Go back to previous page"
+          className="mb-16 text-[10px] tracking-[0.3em] uppercase text-primary hover:text-primary/70 font-medium transition-all duration-300 flex items-center gap-4 group"
         >
-          <span className="group-hover:-translate-x-1 transition-transform duration-300 inline-block">←</span> Go Back
+          <span className="group-hover:-translate-x-2 transition-transform duration-500">←</span>
+          BACK TO PORTFOLIO
         </button>
 
-        <div className="text-center mb-16 sm:mb-20 animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-primary leading-tight tracking-tight">
-            My Projects
+        <div className="text-center mb-24 animate-fade-in">
+          <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
+            Curated Works
+          </p>
+          <h1 className="text-5xl sm:text-7xl font-serif text-primary mb-8 tracking-tight">
+            Selected <span className="italic opacity-80">Projects</span>
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-            Here you can find a selection of my work, showcasing my skills and expertise in various areas.
+          <div className="w-24 h-px bg-primary/30 mx-auto mb-8" />
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-xl italic">
+            "Design and engineering converge to create seamless digital architecture."
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-16">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group relative bg-card border border-border rounded-xl p-6 sm:p-7 transition-all duration-500 hover:border-primary/60 hover:shadow-primary/20 h-full flex flex-col overflow-hidden animate-fade-in opacity-0"
-              style={{ animationDelay: `${index * 100}ms`, animation: `fadeIn 0.6s ease-out ${index * 100}ms forwards` }}
+              className="group flex flex-col animate-fade-in"
+              style={{ animationDelay: `${index * 150}ms`, animation: `fadeIn 1s ease-out ${index * 150}ms forwards` }}
             >
-              <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative z-10">
-                <h2 className="text-xl sm:text-2xl font-bold text-card-foreground mb-4 relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[3px] after:bg-primary after:w-0 group-hover:after:w-full after:transition-all after:duration-500">
-                  {project.title}
-                </h2>
-                <div className="mb-6 flex-shrink-0 overflow-hidden rounded-lg">
+              {/* Project Image Box */}
+              <div className="relative overflow-hidden mb-8 border border-primary/10 group-hover:border-primary/40 transition-all duration-1000">
+                <div className="aspect-[16/10]">
                   <img
                     src={project.image}
-                    alt={`${project.title} project screenshot`}
-                    className="rounded-lg w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
+                    alt={project.title}
+                    className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-all duration-1000 ease-in-out"
                   />
                 </div>
-                <p className="text-sm text-foreground/85 leading-relaxed mb-6 flex-grow font-light">
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80" />
+
+
+              </div>
+
+              {/* Project Details */}
+              <div className="space-y-6 px-2">
+                <div className="flex items-center justify-between border-b border-primary/10 pb-4">
+                  <h2 className="text-3xl font-serif italic text-primary group-hover:text-primary transition-colors duration-500">
+                    {project.title}
+                  </h2>
+                </div>
+
+                <p className="text-foreground/60 leading-relaxed font-sans text-lg italic pr-8">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
+
+                <div className="flex flex-wrap gap-2 pt-2">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="text-xs bg-primary/15 text-primary border border-primary/30 px-3 py-1.5 rounded-full hover:bg-primary/25 hover:shadow-md transition-all duration-200 font-medium"
+                      className="text-[10px] tracking-[0.2em] uppercase font-medium text-foreground/40 border border-primary/10 px-4 py-1.5 transition-all duration-500 group-hover:border-primary/30"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex gap-3 mt-auto">
+                <div className="flex gap-8 pt-4">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 text-primary border border-primary/30 rounded-lg hover:bg-primary/20 hover:border-primary/60 transition-all duration-300 group/btn"
-                    aria-label={`View ${project.title} on GitHub`}
+                    className="text-primary/70 hover:text-primary transition-all duration-300 flex items-center gap-3 text-xs tracking-widest font-medium uppercase"
                   >
-                    <Github className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-300" />
-                    <span className="text-sm font-medium">GitHub</span>
+                    <Github className="w-4 h-4" />
+                    REPOSITORY
                   </a>
                   {project.demo !== "#" && (
                     <a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-accent/10 text-accent border border-accent/30 rounded-lg hover:bg-accent/20 hover:border-accent/60 transition-all duration-300 group/btn"
-                      aria-label={`View ${project.title} demo`}
+                      className="text-primary/70 hover:text-primary transition-all duration-300 flex items-center gap-3 text-xs tracking-widest font-medium uppercase"
                     >
-                      <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-300" />
-                      <span className="text-sm font-medium">Demo</span>
+                      <ExternalLink className="w-4 h-4" />
+                      LIVE PREVIEW
                     </a>
                   )}
                 </div>
