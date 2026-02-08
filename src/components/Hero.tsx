@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
 import profileImage from "@/assets/profile.jpg";
 import ContactModal from "./ContactModal";
@@ -9,107 +9,108 @@ const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden pt-24 sm:pt-32 pb-10">
-
+    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden pt-20">
+      {/* Refined Background Treatment */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-30"
+        className="absolute inset-0 bg-cover bg-center opacity-10 filter grayscale contrast-125"
         style={{ backgroundImage: `url(${heroImage})` }}
         aria-hidden="true"
       />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
-      <div className="absolute inset-0 bg-background/80" />
-    
-      <div className="absolute top-50 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50 animate-pulse" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-50 animate-pulse animation-delay-2000" />
+      {/* Elegant minimalist accents */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      {/* Floating animated shapes */}
-      <div className="absolute top-40 right-20 w-64 h-64 border border-primary/20 rounded-full animate-float" />
-      <div className="absolute bottom-32 left-10 w-48 h-48 border border-accent/20 rounded-full animate-float animation-delay-1000" style={{ animationDirection: 'reverse' }} />
+      <div className="relative z-10 container max-w-6xl mx-auto px-6 grid md:grid-cols-12 gap-12 items-center">
 
-      <div className="relative z-10 container max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        <div className="flex flex-col items-center md:flex-row md:justify-center gap-6 mb-8 md:mb-8 animate-float">
-          <div className="order-2 md:order-1">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary leading-tight tracking-tight" style={{ animationDuration: '3s' }}>
-              ABAYO Moise
+        {/* Profile Column */}
+        <div className="md:col-span-5 order-2 md:order-1 flex justify-center md:justify-end">
+          <div className="relative group">
+            <div className="absolute -inset-4 border border-primary/20 scale-95 group-hover:scale-100 transition-transform duration-700" />
+            <div className="absolute -inset-2 border border-primary/40 scale-90 group-hover:scale-105 transition-transform duration-700 delay-100" />
+
+            <div className="relative w-64 h-80 sm:w-72 sm:h-96 overflow-hidden">
+              <img
+                src={profileImage}
+                alt="ABAYO Moise"
+                className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out scale-110 hover:scale-100"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Text Content Column */}
+        <div className="md:col-span-7 order-1 md:order-2 text-center md:text-left space-y-8">
+          <div className="space-y-4">
+            <p className="text-primary font-medium tracking-[0.3em] uppercase text-sm animate-fade-in">
+              Portfolio
+            </p>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif text-primary leading-[1.1] animate-fade-in animation-delay-300">
+              ABAYO <br />
+              <span className="italic opacity-90">Moise</span>
             </h1>
           </div>
-          <img
-            src={profileImage}
-            alt="ABAYO Moise - Full-Stack Developer and Cybersecurity Enthusiast"
-            className="order-1 md:order-2 w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-full object-cover border-4 border-primary shadow-2xl hover:shadow-glow-lg transition-all duration-300 ring-4 ring-primary/20"
-          />
-        </div>
 
-        <div className="animate-fade-in animation-delay-300">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 md:mb-4 text-primary leading-tight tracking-tight hover:animate-pulse transition-all duration-300 cursor-default">
-            Full-Stack Developer
-          </h2>
-          <h3 className="text-lg sm:text-2xl md:text-3xl text-primary/80 mb-6 md:mb-8 font-semibold animate-fade-in animation-delay-500">
-            & Cybersecurity Enthusiast
-          </h3>
-          <p className="text-base sm:text-lg md:text-xl text-foreground/85 mb-10 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 font-light hover:text-foreground transition-colors duration-300">
-            Crafting secure, scalable solutions with modern technologies.
-            <br className="hidden md:block" />
-            From React frontends to Spring Boot backends, with a security-first mindset.
-          </p>
-        </div>
+          <div className="space-y-6 animate-fade-in animation-delay-500">
+            <div className="inline-block relative">
+              <h2 className="text-2xl sm:text-3xl font-serif italic text-foreground/90">
+                Full-Stack Developer <span className="mx-2 not-italic text-primary/30">|</span> Cybersecurity Enthusiast
+              </h2>
+              <div className="absolute -bottom-2 left-0 w-12 h-px bg-primary" />
+            </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 md:mb-14 px-4 animate-fade-in animation-delay-500">
-          <Button
-            variant="hero"
-            size="lg"
-            className="animate-glow-pulse w-full sm:w-auto shadow-lg hover:shadow-glow-lg transition-all duration-300 text-base font-semibold px-8 hover:-translate-y-1"
-            asChild
-          >
-            <a href="/CV.pdf" download aria-label="Download CV">
-              <Download className="w-5 h-5 mr-2 animate-bounce" style={{ animationDuration: '1.5s' }} />
-              Download CV
-            </a>
-          </Button>
+            <div className="space-y-4">
+              <p className="text-primary font-serif italic text-xl tracking-wide flex items-center gap-3">
+                Secure. Scalable. Battle-tested.
+              </p>
 
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-2 border-primary/60 hover:border-primary hover:bg-primary/10 w-full sm:w-auto transition-all duration-300 text-base font-semibold px-8 hover:-translate-y-1"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <Mail className="w-5 h-5 mr-2" />
-            Contact Me
-          </Button>
-        </div>
+              <p className="text-lg text-foreground/70 max-w-xl leading-relaxed font-light font-sans">
+              Java & Spring Boot specialist with hands-on penetration testing expertise, delivering high-performance backends and secure React-driven digital experiences.
+              </p>
+            </div>
+          </div>
 
-        <div className="flex gap-5 sm:gap-8 justify-center animate-fade-in animation-delay-700">
-          <a
-            href="https://github.com/A2kmoise"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            className="focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-full"
-          >
-            <Button variant="ghost" size="icon" className="w-12 h-12 hover:text-primary hover:bg-primary/10 hover:scale-125 transition-all duration-300 hover:-translate-y-2">
-              <Github className="w-6 h-6 hover:animate-bounce" style={{ animationDuration: '0.8s' }} />
+          <div className="flex flex-col sm:flex-row gap-6 pt-4 animate-fade-in animation-delay-700">
+            <Button
+              variant="default"
+              size="lg"
+              className="group rounded-none px-10 h-14 bg-primary text-primary-foreground hover:bg-primary/80 transition-all duration-500"
+              asChild
+            >
+              <a href="/CV.pdf" download>
+                DOWNLOAD CV
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
-          </a>
-          <a
-            href="https://rw.linkedin.com/in/abayo-moise-3568b7377"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn Profile"
-            className="focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-full"
-          >
-            <Button variant="ghost" size="icon" className="w-12 h-12 hover:text-primary hover:bg-primary/10 hover:scale-125 transition-all duration-300 hover:-translate-y-2">
-              <Linkedin className="w-6 h-6 hover:animate-bounce" style={{ animationDuration: '0.8s' }} />
+
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-none px-10 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider"
+              onClick={() => setIsModalOpen(true)}
+            >
+              GET IN TOUCH
             </Button>
-          </a>
-          <a
-            href="mailto:abayomoise950@gmail.com"
-            aria-label="Send Email"
-            className="focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-full"
-          >
-            <Button variant="ghost" size="icon" className="w-12 h-12 hover:text-primary hover:bg-primary/10 hover:scale-125 transition-all duration-300 hover:-translate-y-2">
-              <Mail className="w-6 h-6 hover:animate-bounce" style={{ animationDuration: '0.8s' }} />
-            </Button>
-          </a>
+          </div>
+
+          <div className="flex gap-8 pt-8 animate-fade-in animation-delay-1000">
+            {[
+              { icon: Github, href: "https://github.com/A2kmoise" },
+              { icon: Linkedin, href: "https://rw.linkedin.com/in/abayo-moise-3568b7377" },
+              { icon: Mail, href: "mailto:abayomoise950@gmail.com" }
+            ].map((social, i) => (
+              <a
+                key={i}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-foreground/40 hover:text-primary transition-colors duration-300"
+              >
+                <social.icon className="w-5 h-5" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

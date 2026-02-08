@@ -108,32 +108,32 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
-            <div className="container max-w-7xl mx-auto px-4 sm:px-6">
-                <div className="flex items-center justify-between h-16 sm:h-20">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-primary/10">
+            <div className="container max-w-7xl mx-auto px-6">
+                <div className="flex items-center justify-between h-20 sm:h-24">
                     {/* Logo */}
                     <Link
                         to="/"
                         onClick={() => setActiveSection("home")}
-                        className="text-xl sm:text-2xl font-bold text-primary hover:opacity-80 transition-opacity duration-300"
+                        className="text-2xl font-serif text-primary tracking-tight hover:opacity-80 transition-opacity duration-300"
                     >
-                        A2kdev
+                        MOISE <span className="italic opacity-80 font-normal">.dev</span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-1 lg:gap-2">
+                    <div className="hidden md:flex items-center gap-8 lg:gap-10">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.id}
                                 to={link.href}
                                 onClick={() => handleNavClick(link.href, link.id)}
-                                className={`px-3 lg:px-4 py-2 rounded-lg transition-all duration-300 relative group font-medium text-sm lg:text-base ${activeSection === link.id
-                                    ? "text-primary bg-primary/10"
-                                    : "text-muted-foreground hover:text-primary"
+                                className={`py-1 transition-all duration-300 relative group text-xs lg:text-sm tracking-[0.2em] uppercase ${activeSection === link.id
+                                    ? "text-primary"
+                                    : "text-foreground/50 hover:text-primary"
                                     }`}
                             >
                                 {link.label}
-                                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300" />
+                                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-500 ${activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                             </Link>
                         ))}
                     </div>
@@ -141,20 +141,20 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
                     {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
-                        className="hidden md:flex items-center gap-2 p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="hidden md:flex p-2 text-foreground/40 hover:text-primary transition-all duration-300 focus:outline-none"
                         aria-label="Toggle theme"
                     >
                         {isDark ? (
-                            <Sun className="w-5 h-5" />
+                            <Sun className="w-5 h-5 flex-shrink-0" />
                         ) : (
-                            <Moon className="w-5 h-5" />
+                            <Moon className="w-5 h-5 flex-shrink-0" />
                         )}
                     </button>
 
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden p-2 rounded-lg text-primary hover:bg-primary/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                        className="md:hidden p-2 text-primary focus:outline-none"
                         aria-label="Toggle navigation menu"
                     >
                         {isOpen ? (

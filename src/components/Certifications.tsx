@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Shield, Award, Lock, Eye, ExternalLink } from "lucide-react";
+import { Shield, Award, Lock, Eye, ExternalLink, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Certifications = () => {
@@ -46,57 +46,62 @@ const Certifications = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-14 bg-background relative overflow-hidden">
-      <div className="absolute top-20 right-0 w-96 h-96 bg-tech-security/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-
-      <div className="container max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-8 sm:mb-10 animate-fade-in">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary leading-tight tracking-tight">
-            Cybersecurity Certifications
+    <section id="certifications" className="py-24 bg-background relative overflow-hidden">
+      <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16 animate-fade-in">
+          <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
+            Recognition
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-serif text-primary mb-6">
+            CyberSecurity <span className="italic opacity-80">Certifications</span>
           </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-            Industry-recognized credentials demonstrating security expertise and commitment to best practices
+          <div className="w-20 h-px bg-primary/30 mx-auto mb-6" />
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg">
+            Professional credentials in cybersecurity and cloud infrastructure.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
           {certifications.map((cert, index) => (
             <Card
               key={index}
-              className="bg-card/40 backdrop-blur-md border border-border/50 hover:border-tech-security/60 transition-all duration-500 hover:shadow-glow group relative overflow-hidden h-full animate-fade-in"
+              className="bg-card/30 backdrop-blur-sm border border-primary/10 rounded-none hover:border-primary/40 transition-all duration-700 group relative overflow-hidden h-full animate-fade-in shadow-none"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-tech-security/10 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 bg-tech-security/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <CardHeader className="pb-2 sm:pb-3 relative z-10">
-                <div className="flex items-start justify-between mb-2">
-                  <div className="p-2 bg-tech-security/20 rounded-lg group-hover:scale-110 group-hover:bg-tech-security/30 transition-all duration-500">
-                    {cert.icon}
+              <CardHeader className="pb-4 relative z-10 space-y-4">
+                <div className="flex items-start justify-between">
+                  <div className="w-14 h-14 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors duration-500">
+                    {Object.assign({}, cert.icon, {
+                      props: { ...cert.icon.props, className: "w-6 h-6 text-primary opacity-80 group-hover:opacity-100 transition-all duration-500" }
+                    })}
                   </div>
                   {cert.verified && (
-                    <Badge variant="secondary" className="bg-success/30 text-success border border-success/50 text-xs font-semibold px-2 py-0.5">
-                      <Award className="w-2 h-2 mr-1" />
-                      Verified
+                    <Badge variant="outline" className="rounded-none border-primary/20 text-primary text-[10px] tracking-widest uppercase font-medium px-3 py-1">
+                      VERIFIED
                     </Badge>
                   )}
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-card-foreground mb-1 font-bold">{cert.title}</CardTitle>
-                <CardDescription className="text-xs sm:text-sm text-muted-foreground">
-                  <span className="font-semibold text-foreground">{cert.issuer}</span> <span className="text-muted-foreground">• {cert.date}</span>
-                </CardDescription>
+                <div className="space-y-1">
+                  <CardTitle className="text-2xl font-serif italic text-foreground group-hover:text-primary transition-colors duration-500">
+                    {cert.title}
+                  </CardTitle>
+                  <CardDescription className="text-foreground/50 leading-relaxed font-sans text-sm">
+                    <span className="text-primary/70">{cert.issuer}</span> • {cert.date}
+                  </CardDescription>
+                </div>
               </CardHeader>
 
-              <CardContent className="pt-0 space-y-2 sm:space-y-3 relative z-10">
-                <p className="text-xs text-foreground/85 leading-relaxed font-light">{cert.description}</p>
+              <CardContent className="pb-8 relative z-10 space-y-6">
+                <p className="text-foreground/60 leading-relaxed font-sans text-sm italic">
+                  "{cert.description}"
+                </p>
 
-                <div className="flex flex-wrap gap-1 sm:gap-2">
+                <div className="flex flex-wrap gap-2">
                   {cert.skills.map((skill, skillIndex) => (
                     <Badge
                       key={skillIndex}
                       variant="outline"
-                      className="border-tech-security/40 text-tech-security bg-tech-security/10 hover:bg-tech-security/20 hover:shadow-md transition-all duration-200 text-xs font-medium"
+                      className="rounded-none bg-transparent text-foreground/70 border-primary/10 group-hover:border-primary/30 transition-all duration-500 px-3 py-1 text-[10px] tracking-widest uppercase font-medium"
                     >
                       {skill}
                     </Badge>
@@ -106,28 +111,25 @@ const Certifications = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full mt-2 text-tech-security hover:text-tech-security hover:bg-tech-security/15 transition-all duration-300 font-medium text-xs"
+                  className="w-full rounded-none border border-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-widest text-[10px] h-12 uppercase"
                 >
-                  <ExternalLink className="w-3 h-3 mr-1" />
-                  View Certificate
+                  <ExternalLink className="w-3 h-3 mr-2" />
+                  View Certification
                 </Button>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="text-center mt-8 animate-fade-in">
-          <p className="text-muted-foreground mb-4 leading-relaxed text-xs sm:text-sm font-light">
-            Continuously learning and staying updated with the latest security trends and technologies
-          </p>
+        <div className="text-center animate-fade-in">
           <Button
-            variant="hero"
-            size="sm"
-            className="font-semibold px-5 py-2 text-xs shadow-lg hover:shadow-glow-lg transition-all duration-300"
+            variant="outline"
+            size="lg"
+            className="rounded-none px-12 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider text-xs"
             onClick={() => navigate("/certificates")}
           >
-            <Award className="w-3 h-3 mr-1" />
-            View All Certifications
+            ALL CREDENTIALS
+            <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </div>
       </div>

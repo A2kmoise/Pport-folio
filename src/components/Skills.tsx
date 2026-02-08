@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LayoutDashboard, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, Zap, LayoutDashboardIcon } from "lucide-react";
+import { LayoutDashboard, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, Zap, LayoutDashboardIcon, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -53,45 +53,55 @@ const Skills = () => {
 
 
   return (
-    <section className="py-12 sm:py-14 bg-background relative overflow-hidden">
-      <div className="absolute top-0 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+    <section id="skills" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/5 to-transparent" />
+      <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/5 to-transparent" />
 
-      <div className="container max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-8 sm:mb-10 animate-fade-in">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary leading-tight tracking-tight">
-            Skills & Expertise
+      <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16 animate-fade-in">
+          <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
+            Expertise
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-serif text-primary mb-6">
+            Technical Proficiency
           </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-            Full-stack proficiency across modern web technologies and frameworks
+          <div className="w-20 h-px bg-primary/30 mx-auto mb-6" />
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg">
+            A comprehensive suite of tools and frameworks for modern enterprise development.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {techStacks.map((stack, index) => (
             <Card
               key={index}
-              className="bg-card/50 backdrop-blur-sm border border-border/40 hover:border-primary/60 transition-all duration-500 hover:shadow-glow group h-full overflow-hidden animate-fade-in"
+              className="bg-card/30 backdrop-blur-sm border border-primary/10 rounded-none hover:border-primary/40 transition-all duration-700 group h-full overflow-hidden animate-fade-in shadow-none"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <CardHeader className="pb-2 sm:pb-3 relative z-10">
-                <div className="mb-2 flex justify-center group-hover:scale-110 transition-transform duration-500">
-                  {stack.icon}
+              <CardHeader className="pb-4 relative z-10 space-y-4">
+                <div className="w-14 h-14 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors duration-500">
+                  {/* Clone icon to apply primary color */}
+                  {Object.assign({}, stack.icon, {
+                    props: { ...stack.icon.props, className: "w-6 h-6 text-primary opacity-80 group-hover:opacity-100 transition-all duration-500" }
+                  })}
                 </div>
-                <CardTitle className="text-base sm:text-lg text-card-foreground mb-1 font-bold text-center">{stack.title}</CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed text-xs text-center">
-                  {stack.description}
-                </CardDescription>
+                <div className="space-y-1">
+                  <CardTitle className="text-xl font-serif italic text-foreground group-hover:text-primary transition-colors duration-500">
+                    {stack.title}
+                  </CardTitle>
+                  <CardDescription className="text-foreground/50 leading-relaxed font-sans text-sm">
+                    {stack.description}
+                  </CardDescription>
+                </div>
               </CardHeader>
-              <CardContent className="pt-0 relative z-10">
-                <div className="flex flex-wrap gap-1 sm:gap-2 justify-center">
+              <CardContent className="pb-8 relative z-10">
+                <div className="flex flex-wrap gap-2 mt-2">
                   {stack.skills.map((skill, skillIndex) => (
                     <Badge
                       key={skillIndex}
-                      variant="secondary"
-                      className="bg-primary/10 text-primary border border-primary/20 hover:bg-primary/15 hover:border-primary/35 hover:shadow-sm transition-all duration-200 text-xs font-medium"
+                      variant="outline"
+                      className="rounded-none bg-transparent text-foreground/70 border-primary/10 group-hover:border-primary/30 transition-all duration-500 px-3 py-1 text-[10px] tracking-widest uppercase font-medium"
                     >
                       {skill}
                     </Badge>
@@ -104,13 +114,13 @@ const Skills = () => {
 
         <div className="text-center animate-fade-in">
           <Button
-            variant="hero"
-            size="sm"
-            className="font-semibold px-5 py-2 text-xs shadow-lg hover:shadow-glow-lg transition-all duration-300"
+            variant="outline"
+            size="lg"
+            className="rounded-none px-12 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider text-xs"
             onClick={() => navigate("/projects")}
           >
-            <Zap className="w-3 h-3 mr-2" />
-            View All Projects
+            VIEW FULL PORTFOLIO
+            <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </div>
       </div>

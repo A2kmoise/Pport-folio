@@ -17,17 +17,29 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
             ([entry]) => {
                 if (entry.isIntersecting) {
                     let current = 0;
-                    const increment = target / 50;
-                    const interval = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            setCount(target);
-                            clearInterval(interval);
-                        } else {
-                            setCount(Math.floor(current));
-                        }
-                    }, 30);
+                    const duration = 2000;
+                    const steps = 60;
+                    const increment = target / steps;
+                    const startTime = performance.now();
 
+                    const animate = (currentTime: number) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+
+                        // Easing function for smoother count
+                        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                        const currentCount = Math.floor(easeOutQuart * target);
+
+                        setCount(currentCount);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            setCount(target);
+                        }
+                    };
+
+                    requestAnimationFrame(animate);
                     observer.unobserve(entry.target);
                 }
             },
@@ -46,21 +58,21 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
     }, [target]);
 
     return (
-        <span ref={countRef} className="font-bold text-3xl sm:text-4xl text-primary">
+        <span ref={countRef} className="font-serif italic text-5xl sm:text-6xl text-primary">
             {count}
-            {suffix}
+            <span className="text-3xl sm:text-4xl ml-1 not-italic opacity-60 font-sans">{suffix}</span>
         </span>
     );
 };
 
 const StatItem = ({ icon, value, suffix, label }: StatItemProps) => {
     return (
-        <div className="flex flex-col items-center animate-fade-in">
-            <div className="mb-3 group hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                <div className="text-primary w-6 h-6">{icon}</div>
+        <div className="flex flex-col items-center animate-fade-in group py-8 border-x border-primary/5 last:border-r-0 first:border-l-0">
+            <div className="text-primary/40 mb-6 group-hover:text-primary transition-colors duration-500">
+                {icon}
             </div>
             <AnimatedCounter target={value} suffix={suffix} />
-            <p className="text-muted-foreground text-xs sm:text-sm font-medium mt-2">{label}</p>
+            <p className="text-foreground/50 text-[10px] sm:text-xs tracking-[0.3em] uppercase mt-6 font-medium">{label}</p>
         </div>
     );
 };
@@ -68,41 +80,32 @@ const StatItem = ({ icon, value, suffix, label }: StatItemProps) => {
 const Stats = () => {
     const stats = [
         {
-            icon: <Zap className="w-8 h-8" />,
-            value: 1,
+            icon: <Zap className="w-5 h-5" />,
+            value: 2,
             suffix: "+",
-            label: "Years of Experience"
+            label: "Years Professional"
         },
         {
-            icon: <Code2 className="w-8 h-8" />,
-            value: 15,
+            icon: <Code2 className="w-5 h-5" />,
+            value: 12,
             suffix: "+",
-            label: "Projects Completed"
+            label: "Systems Deployed"
         },
         {
-            icon: <Award className="w-8 h-8" />,
-            value: 1,
+            icon: <Award className="w-5 h-5" />,
+            value: 4,
             suffix: "",
-            label: "Security Certification"
+            label: "Global Credentials"
         }
     ];
 
     return (
-        <section className="py-12 sm:py-14 bg-background relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        <section className="py-24 bg-background relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
 
-            <div className="container max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
-                <div className="text-center mb-8 sm:mb-10 animate-fade-in">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary">
-                        Experience
-                    </h2>
-                    <p className="text-muted-foreground text-xs sm:text-sm">
-                        Proven track record of delivering high-quality solutions
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8">
+            <div className="container max-w-6xl mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border-y border-primary/10">
                     {stats.map((stat, index) => (
                         <div key={index} style={{ animationDelay: `${index * 150}ms` }}>
                             <StatItem
