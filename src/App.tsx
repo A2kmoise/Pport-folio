@@ -11,11 +11,15 @@ import NotFound from "./pages/NotFound";
 import ProjectPage from "./pages/project";
 import CertificatePage from "./pages/certificates";
 import ScrollToTop from "./components/ScrollToTop";
+import Terminal from "@/components/Terminal";
+import { Terminal as TerminalIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -33,6 +37,24 @@ const App = () => {
           </Routes>
           <Footer />
         </BrowserRouter>
+
+        {/* Global Terminal Toggle Button */}
+        {!isTerminalOpen && (
+          <Button
+            onClick={() => setIsTerminalOpen(true)}
+            variant="outline"
+            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full border-primary/40 text-primary bg-background/80 backdrop-blur-sm shadow-xl hover:scale-110 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            size="icon"
+          >
+            <TerminalIcon className="w-6 h-6 stroke-[1.5]" />
+          </Button>
+        )}
+
+        {/* Global Terminal Component */}
+        <Terminal
+          isOpen={isTerminalOpen}
+          onClose={() => setIsTerminalOpen(false)}
+        />
       </TooltipProvider>
     </QueryClientProvider>
   );
