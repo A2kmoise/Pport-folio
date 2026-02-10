@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Terminal as TerminalIcon, X, ChevronRight, Minimize2, Maximize2 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
@@ -7,7 +7,10 @@ interface TerminalProps {
   onClose: () => void;
 }
 
+type Theme = 'classic' | 'midnight';
+
 const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
+  const [theme, setTheme] = useState<Theme>('classic');
   const [history, setHistory] = useState<(string | React.ReactNode)[]>([
     "Welcome to ABAYO Moise's secure environment.",
     "",
@@ -20,12 +23,43 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const themeConfig = {
+    classic: {
+      bg: "bg-[#0c0c0c]",
+      border: "border-white/10",
+      headerBg: "bg-[#1e1e1e]",
+      headerBorder: "border-white/5",
+      headerText: "text-white/80",
+      bodyText: "text-white/90",
+      promptUser: "text-green-500",
+      promptDir: "text-blue-500",
+      cursor: "#22c55e",
+      scrollbar: "#333",
+      scrollbarHover: "#444"
+    },
+    midnight: {
+      bg: "bg-[#020617]",
+      border: "border-cyan-500/20",
+      headerBg: "bg-[#0f172a]",
+      headerBorder: "border-cyan-500/10",
+      headerText: "text-cyan-400/90",
+      bodyText: "text-cyan-50/90",
+      promptUser: "text-cyan-400",
+      promptDir: "text-indigo-400",
+      cursor: "#22d3ee",
+      scrollbar: "#1e293b",
+      scrollbarHover: "#334155"
+    }
+  };
+
+  const currentTheme = themeConfig[theme];
+
   const prompt = (
     <span className="flex items-center gap-1 shrink-0">
-      <span className="text-green-500 font-bold font-mono">moise@portfolio</span>
-      <span className="text-white">:</span>
-      <span className="text-blue-500 font-bold font-mono">~</span>
-      <span className="text-white">$</span>
+      <span className={cn("font-bold font-mono", currentTheme.promptUser)}>moise@portfolio</span>
+      <span className={currentTheme.bodyText}>:</span>
+      <span className={cn("font-bold font-mono", currentTheme.promptDir)}>~</span>
+      <span className={currentTheme.bodyText}>$</span>
     </span>
   );
 
@@ -41,19 +75,20 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen, isMinimized]);
 
-  const commands: Record<string, () => void> = {
+  const commands: Record<string, (args?: string[]) => void> = {
     help: () => {
       setHistory(prev => [
         ...prev,
         <div className="flex gap-2 font-mono items-center">{prompt} <span>help</span></div>,
         "Available commands:",
-        "  help     - Show this help message",
-        "  about    - Learn more about me",
-        "  skills   - See my technical stack",
-        "  projects - View my work",
-        "  contact  - Get my contact info",
-        "  clear    - Clear the terminal history",
-        "  exit     - Close the terminal session"
+        "  help           - Show this help message",
+        "  about          - Learn more about me",
+        "  skills         - See my technical stack",
+        "  projects       - View my work",
+        "  contact        - Get my contact info",
+        "  theme [name]   - Switch theme (classic, midnight)",
+        "  clear          - Clear the terminal history",
+        "  exit           - Close the terminal session"
       ]);
     },
     about: () => {
@@ -95,6 +130,23 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         "GitHub: github.com/A2kmoise"
       ]);
     },
+    theme: (args) => {
+      const newTheme = args?.[0] as Theme;
+      if (newTheme === 'classic' || newTheme === 'midnight') {
+        setTheme(newTheme);
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>theme {newTheme}</span></div>,
+          `Theme changed to ${newTheme}.`
+        ]);
+      } else {
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>theme {args?.[0] || ""}</span></div>,
+          "Usage: theme [classic | midnight]"
+        ]);
+      }
+    },
     clear: () => {
       setHistory([
         "Terminal cleared.",
@@ -106,26 +158,40 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const commandKeys = useMemo(() => Object.keys(commands), [commands]);
+
+  const suggestion = useMemo(() => {
+    if (!input) return "";
+    const match = commandKeys.find(cmd => cmd.startsWith(input.toLowerCase()));
+    return match ? match.slice(input.length) : "";
+  }, [input, commandKeys]);
+
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault();
-    const cmd = input.trim();
-    const cmdKey = cmd.toLowerCase();
+    const cleanInput = input.trim();
+    const parts = cleanInput.split(/\s+/);
+    const cmdKey = parts[0].toLowerCase();
+    const args = parts.slice(1);
 
-    if (cmd === "") {
+    if (cmdKey === "") {
       setHistory(prev => [...prev, prompt]);
       return;
     }
 
     // Add to command history
-    if (cmdHistory[cmdHistory.length - 1] !== cmd) {
-      setCmdHistory(prev => [...prev, cmd]);
+    if (cmdHistory[cmdHistory.length - 1] !== cleanInput) {
+      setCmdHistory(prev => [...prev, cleanInput]);
     }
     setHistoryIndex(-1);
 
     if (commands[cmdKey]) {
-      commands[cmdKey]();
+      commands[cmdKey](args);
     } else {
-      setHistory(prev => [...prev, <div className="flex gap-2 font-mono items-center">{prompt} <span>{input}</span></div>, `Command not found: ${cmdKey}. Type 'help' for assistance.`]);
+      setHistory(prev => [
+        ...prev,
+        <div className="flex gap-2 font-mono items-center">{prompt} <span>{input}</span></div>,
+        `Command not found: ${cmdKey}. Type 'help' for assistance.`
+      ]);
     }
 
     setInput("");
@@ -151,6 +217,9 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         setHistoryIndex(newIndex);
         setInput(cmdHistory[newIndex]);
       }
+    } else if ((e.key === 'Tab' || e.key === 'ArrowRight') && suggestion) {
+      e.preventDefault();
+      setInput(input + suggestion);
     }
   };
 
@@ -179,7 +248,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
           display: inline-block;
           width: 8px;
           height: 16px;
-          background-color: #22c55e;
+          background-color: ${currentTheme.cursor};
           margin-left: 2px;
           animation: blink 1s step-end infinite;
           vertical-align: middle;
@@ -199,20 +268,20 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
           background: transparent;
         }
         .terminal-scrollbar::-webkit-scrollbar-thumb {
-          background: #333;
+          background: ${currentTheme.scrollbar};
           border-radius: 10px;
         }
         .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #444;
+          background: ${currentTheme.scrollbarHover};
         }
       `}</style>
 
-      <div className="bg-[#0c0c0c] border border-white/10 shadow-2xl flex flex-col h-full overflow-hidden rounded-lg font-mono">
-        {/* Terminal Header - Classic Dark Style */}
-        <div className="bg-[#1e1e1e] px-4 py-2 flex items-center justify-between select-none border-b border-white/5">
+      <div className={cn("shadow-2xl flex flex-col h-full overflow-hidden rounded-lg font-mono border", currentTheme.bg, currentTheme.border)}>
+        {/* Terminal Header */}
+        <div className={cn("px-4 py-2 flex items-center justify-between select-none border-b", currentTheme.headerBg, currentTheme.headerBorder)}>
           <div className="flex items-center gap-2">
-            <TerminalIcon className="w-4 h-4 text-white/60" />
-            <span className="text-white/80 text-sm font-mono tracking-tight">
+            <TerminalIcon className={cn("w-4 h-4", currentTheme.headerText)} />
+            <span className={cn("text-sm font-mono tracking-tight", currentTheme.headerText)}>
               moise@portfolio: ~
             </span>
           </div>
@@ -221,13 +290,13 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
               onClick={(e) => { e.stopPropagation(); setIsMinimized(!isMinimized); }}
               className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors"
             >
-              {isMinimized ? <Maximize2 className="w-3 h-3 text-white/50" /> : <Minimize2 className="w-3 h-3 text-white/50" />}
+              {isMinimized ? <Maximize2 className={cn("w-3 h-3", currentTheme.headerText)} /> : <Minimize2 className={cn("w-3 h-3", currentTheme.headerText)} />}
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); onClose(); }}
               className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-red-500/80 transition-colors group"
             >
-              <X className="w-3 h-3 text-white/50 group-hover:text-white" />
+              <X className={cn("w-3 h-3 group-hover:text-white", currentTheme.headerText)} />
             </button>
           </div>
         </div>
@@ -236,7 +305,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         {!isMinimized && (
           <div
             ref={scrollRef}
-            className="flex-1 p-5 font-mono text-sm overflow-y-auto text-white/90 terminal-scrollbar"
+            className={cn("flex-1 p-5 font-mono text-sm overflow-y-auto terminal-scrollbar", currentTheme.bodyText)}
           >
             <div className="space-y-1.5">
               {history.map((line, i) => (
@@ -249,8 +318,11 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
               <form onSubmit={handleCommand} className="flex items-start gap-2">
                 {prompt}
                 <div className="flex-1 relative flex items-center flex-wrap">
-                  <span className="whitespace-pre-wrap break-all text-white/90">{input}</span>
-                  <span className="terminal-cursor" />
+                  <span className={cn("whitespace-pre-wrap break-all", currentTheme.bodyText)}>
+                    {input}
+                    {suggestion && <span className="opacity-40">{suggestion}</span>}
+                  </span>
+                  <div className="terminal-cursor" />
                   <input
                     ref={inputRef}
                     type="text"
