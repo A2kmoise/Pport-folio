@@ -66,7 +66,7 @@ const Hero = () => {
               </p>
 
               <p className="text-lg text-foreground/70 max-w-xl leading-relaxed font-light font-sans">
-              Java & Spring Boot specialist with hands-on penetration testing expertise, delivering high-performance backends and secure React-driven digital experiences.
+                Java & Spring Boot specialist with hands-on penetration testing expertise, delivering high-performance backends and secure React-driven digital experiences.
               </p>
             </div>
           </div>

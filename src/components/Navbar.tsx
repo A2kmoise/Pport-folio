@@ -54,7 +54,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
             return;
         }
 
-        const sections = ["home", "skills", "certifications", "contact"];
+        const sections = ["home", "skills", "certifications", "testimonials", "contact"];
 
         const observerOptions = {
             root: null,
@@ -90,6 +90,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
         { label: "Skills", href: "/#skills", id: "skills" },
         { label: "Certifications", href: "/#certifications", id: "certifications" },
         { label: "Projects", href: "/projects", id: "projects" },
+        { label: "Testimonials", href: "/#testimonials", id: "testimonials" },
         { label: "Contact", href: "/#contact", id: "contact" },
     ];
 

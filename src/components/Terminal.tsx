@@ -87,6 +87,9 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         "  projects       - View my work",
         "  contact        - Get my contact info",
         "  theme [name]   - Switch theme (classic, midnight)",
+        "  hack --matrix  - Trigger digital rain sequence",
+        "  sudo --reveal  - Reveal hidden system architecture",
+        "  whoami         - Display current user identity",
         "  clear          - Clear the terminal history",
         "  exit           - Close the terminal session"
       ]);
@@ -146,6 +149,54 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
           "Usage: theme [classic | midnight]"
         ]);
       }
+    },
+    hack: (args) => {
+      if (args?.[0] === '--matrix') {
+        window.dispatchEvent(new CustomEvent('matrix-rain', { detail: { active: true } }));
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>hack --matrix</span></div>,
+          "Initializing digital rain sequence...",
+          "Accessing mainframes...",
+          "Bypass successful."
+        ]);
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('matrix-rain', { detail: { active: false } }));
+        }, 10000);
+      } else {
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>hack {args?.[0] || ""}</span></div>,
+          "Usage: hack --matrix"
+        ]);
+      }
+    },
+    sudo: (args) => {
+      if (args?.[0] === '--reveal') {
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>sudo --reveal</span></div>,
+          "Privilege escalation granted.",
+          "Revealing hidden system architecture...",
+          "All security protocols visible."
+        ]);
+      } else {
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>sudo {args?.[0] || ""}</span></div>,
+          "Usage: sudo --reveal"
+        ]);
+      }
+    },
+    whoami: () => {
+      setHistory(prev => [
+        ...prev,
+        <div className="flex gap-2 font-mono items-center">{prompt} <span>whoami</span></div>,
+        "User: ABAYO Moise",
+        "Privileges: Admin / System Architect",
+        "Security Clearance: Level 5 (Cybersecurity Specialist)",
+        "Current Status: Actively hunting vulnerabilities."
+      ]);
     },
     clear: () => {
       setHistory([
