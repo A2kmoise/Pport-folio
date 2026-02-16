@@ -2,17 +2,19 @@ import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Index = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <section id="home">
         <Hero />
       </section>
+
       <section id="skills">
         <Skills />
       </section>
@@ -20,6 +22,9 @@ const Index = () => {
         <Certifications />
       </section>
       <Stats />
+      <section id="testimonials">
+        <Testimonials />
+      </section>
       <section id="contact">
         <Contact
           isModalOpen={isContactModalOpen}
