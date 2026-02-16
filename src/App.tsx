@@ -14,6 +14,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Terminal from "@/components/Terminal";
 import { Terminal as TerminalIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import MatrixRain from "./components/MatrixRain";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <MatrixRain />
         <BrowserRouter>
           <ScrollToTop />
           <Navbar onOpenContact={() => setIsContactModalOpen(true)} />
