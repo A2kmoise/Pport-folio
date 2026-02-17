@@ -1,6 +1,6 @@
 import React from "react";
 import publicPulse from "@/assets/publicPulse.png";
-import ecommerceAPI from "@/assets/e-commerce.png";
+import ecommerceAPI from "@/assets/ecommerce-tech.png";
 import snapLink from "@/assets/snaplink.png";
 import Lumina from "@/assets/lumina.png";
 import supaMenu from "@/assets/supamenu.png";
