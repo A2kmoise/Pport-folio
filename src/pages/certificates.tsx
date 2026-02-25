@@ -19,9 +19,6 @@ const CertificatePage = () => {
 
   return (
     <div className="min-h-screen px-6 py-24 bg-background text-foreground relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <button
@@ -36,11 +33,11 @@ const CertificatePage = () => {
           <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
             Credentials
           </p>
-          <h1 className="text-5xl sm:text-7xl font-serif text-primary mb-8 tracking-tight">
+          <h1 className="text-4xl sm:text-7xl font-serif text-primary mb-8 tracking-tight">
             CyberSecurity <span className="italic opacity-80">Certifications</span>
           </h1>
           <div className="w-24 h-px bg-primary/30 mx-auto mb-8" />
-          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-xl italic">
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg sm:text-xl italic">
             "A commitment to excellence and continuous technical advancement."
           </p>
         </div>
