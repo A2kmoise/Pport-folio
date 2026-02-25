@@ -45,7 +45,7 @@ const App = () => {
           <Button
             onClick={() => setIsTerminalOpen(true)}
             variant="outline"
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full border-primary/40 text-primary bg-background/80 backdrop-blur-sm shadow-xl hover:scale-110 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full border-primary/40 text-primary bg-background/80 backdrop-blur-sm shadow-xl hover:scale-110 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
             size="icon"
           >
             <TerminalIcon className="w-6 h-6 stroke-[1.5]" />
