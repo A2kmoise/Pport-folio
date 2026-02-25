@@ -285,8 +285,8 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
   return (
     <div
       className={cn(
-        "fixed bottom-24 right-6 z-50 transition-all duration-500 ease-in-out",
-        isMinimized ? "w-64 h-12" : "w-[90vw] max-w-2xl h-[450px]"
+        "fixed bottom-4 right-2 sm:bottom-24 sm:right-6 z-50 transition-all duration-500 ease-in-out",
+        isMinimized ? "w-64 h-12" : "w-[95vw] sm:w-[90vw] max-w-2xl h-[400px] sm:h-[450px]"
       )}
       onClick={handleClick}
     >
@@ -356,7 +356,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         {!isMinimized && (
           <div
             ref={scrollRef}
-            className={cn("flex-1 p-5 font-mono text-sm overflow-y-auto terminal-scrollbar", currentTheme.bodyText)}
+            className={cn("flex-1 p-3 sm:p-5 font-mono text-xs sm:text-sm overflow-y-auto terminal-scrollbar", currentTheme.bodyText)}
           >
             <div className="space-y-1.5">
               {history.map((line, i) => (

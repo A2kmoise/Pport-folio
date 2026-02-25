@@ -27,7 +27,7 @@ const testimonials = [
 const Testimonials = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: "start",
+    align: "center",
     skipSnaps: false
   });
 
@@ -41,9 +41,6 @@ const Testimonials = () => {
 
   return (
     <div className="py-24 bg-background relative overflow-hidden">
-      {/* Background Accents */}
-      <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
-      <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-primary/10 to-transparent" />
 
       <div className="container max-w-6xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
@@ -78,15 +75,15 @@ const Testimonials = () => {
         </div>
 
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
+          <div className="flex -ml-4">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-6 first:pl-0"
+                className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4"
               >
                 <div className="h-full group relative">
                   {/* Card Main Body */}
-                  <div className="border border-primary/10 bg-card p-10 h-full flex flex-col justify-between transition-all duration-500 group-hover:border-primary/30 group-hover:bg-card/80">
+                  <div className="border border-primary/10 bg-card p-8 sm:p-10 h-full flex flex-col justify-between transition-all duration-500 group-hover:border-primary/30 group-hover:bg-card/80">
                     <div className="space-y-8">
                       <Quote className="w-10 h-10 text-primary/20 group-hover:text-primary/40 transition-colors duration-500" />
 

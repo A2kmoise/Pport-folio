@@ -54,20 +54,16 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-24 bg-background relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/5 to-transparent" />
-      <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/5 to-transparent" />
 
       <div className="container max-w-6xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
             Expertise
           </p>
-          <h2 className="text-4xl sm:text-5xl font-serif text-primary mb-6">
+          <h2 className="text-3xl sm:text-5xl font-serif text-primary mb-6">
             Technical Proficiency
           </h2>
-          <div className="w-20 h-px bg-primary/30 mx-auto mb-6" />
-          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg">
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-base sm:text-lg">
             A comprehensive suite of tools and frameworks for modern enterprise development.
           </p>
         </div>
@@ -116,7 +112,7 @@ const Skills = () => {
           <Button
             variant="outline"
             size="lg"
-            className="rounded-none px-12 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider text-xs"
+            className="rounded-none px-12 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider text-xs w-full sm:w-auto"
             onClick={() => navigate("/projects")}
           >
             VIEW FULL PORTFOLIO

@@ -45,22 +45,21 @@ const Contact = ({ isModalOpen = false, setIsModalOpen = () => { } }: ContactPro
           <h2 className="text-4xl sm:text-5xl font-serif text-primary mb-6">
             Let's Start a <span className="italic">Conversation</span>
           </h2>
-          <div className="w-20 h-px bg-primary/30 mx-auto mb-6" />
           <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg">
             Whether for collaboration or a security audit, reach out directly.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* Left side - Contact Methods */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <div className="md:col-span-6 lg:col-span-5 flex flex-col gap-6">
             {contactMethods.map((method, index) => (
               <div
                 key={index}
                 className="group animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="flex items-center space-x-6 p-6 border-l border-primary/10 group-hover:border-primary transition-all duration-700">
+                <div className="flex items-center space-x-6 p-6 group-hover:bg-primary/[0.02] transition-all duration-700">
                   <div className="text-primary/40 group-hover:text-primary transition-colors duration-500">
                     {method.icon}
                   </div>
@@ -85,7 +84,7 @@ const Contact = ({ isModalOpen = false, setIsModalOpen = () => { } }: ContactPro
           </div>
 
           {/* Right side - Contact Form */}
-          <div className="lg:col-span-7">
+          <div className="md:col-span-6 lg:col-span-7">
             <ContactForm className="w-full animate-fade-in animation-delay-400" />
           </div>
         </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface NavbarProps {
     onOpenContact?: () => void;
@@ -109,7 +110,10 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-primary/10">
+        <nav className={cn(
+            "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+            isOpen ? "bg-background" : "bg-background/90 backdrop-blur-md"
+        )}>
             <div className="container max-w-7xl mx-auto px-6">
                 <div className="flex items-center justify-between h-20 sm:h-24">
                     {/* Logo */}
@@ -168,37 +172,65 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
 
                 {/* Mobile Navigation Menu */}
                 {isOpen && (
-                    <div className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-lg animate-fade-in">
-                        <div className="px-4 py-4 space-y-2">
-                            {navLinks.map((link) => (
+                    <div className="md:hidden fixed inset-0 z-50 bg-background w-screen h-screen animate-in fade-in duration-300">
+                        <div className="flex flex-col h-full container px-6 py-6">
+                            <div className="flex items-center justify-between h-20 sm:h-24 mb-8">
                                 <Link
-                                    key={link.id}
-                                    to={link.href}
-                                    onClick={() => handleNavClick(link.href, link.id)}
-                                    className={`block px-4 py-3 rounded-lg transition-all duration-300 font-medium ${activeSection === link.id
-                                        ? "text-primary bg-primary/10 border border-primary/20"
-                                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
-                                        }`}
+                                    to="/"
+                                    onClick={() => { setActiveSection("home"); setIsOpen(false); }}
+                                    className="text-2xl font-serif text-primary tracking-tight"
                                 >
-                                    {link.label}
+                                    MOISE <span className="italic opacity-80 font-normal">.dev</span>
                                 </Link>
-                            ))}
-                            <button
-                                onClick={toggleTheme}
-                                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all duration-300 font-medium"
-                            >
-                                {isDark ? (
-                                    <>
-                                        <Sun className="w-5 h-5" />
-                                        Light Mode
-                                    </>
-                                ) : (
-                                    <>
-                                        <Moon className="w-5 h-5" />
-                                        Dark Mode
-                                    </>
-                                )}
-                            </button>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="p-4 -mr-4 text-primary focus:outline-none"
+                                    aria-label="Close menu"
+                                >
+                                    <X className="w-6 h-6" />
+                                </button>
+                            </div>
+
+                            <div className="flex flex-col items-center justify-center flex-1 space-y-8">
+                                {navLinks.map((link) => (
+                                    <Link
+                                        key={link.id}
+                                        to={link.href}
+                                        onClick={() => handleNavClick(link.href, link.id)}
+                                        className={cn(
+                                            "text-lg tracking-[0.3em] uppercase py-2 transition-all duration-300 relative group font-sans font-medium",
+                                            activeSection === link.id
+                                                ? "text-primary"
+                                                : "text-foreground/60 hover:text-primary"
+                                        )}
+                                    >
+                                        {link.label}
+                                        <span className={cn(
+                                            "absolute -bottom-1 left-1/2 -translate-x-1/2 h-px bg-primary transition-all duration-500",
+                                            activeSection === link.id ? "w-full" : "w-0 group-hover:w-full"
+                                        )} />
+                                    </Link>
+                                ))}
+                            </div>
+
+                            <div className="flex justify-center mt-auto pb-12">
+                                <button
+                                    onClick={toggleTheme}
+                                    className="flex items-center gap-4 text-sm tracking-[0.3em] uppercase text-primary/70 hover:text-primary transition-all duration-300 font-medium"
+                                >
+                                    {isDark ? (
+                                        <>
+                                            <Sun className="w-5 h-5" />
+                                            Light Mode
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Moon className="w-5 h-5" />
+                                            Dark Mode
+                                        </>
+                                    )}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}

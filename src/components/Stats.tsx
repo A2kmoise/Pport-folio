@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Code2, Zap, Award } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface StatItemProps {
     icon: React.ReactNode;
@@ -67,12 +68,12 @@ const AnimatedCounter = ({ target, suffix }: { target: number; suffix: string })
 
 const StatItem = ({ icon, value, suffix, label }: StatItemProps) => {
     return (
-        <div className="flex flex-col items-center animate-fade-in group py-8 border-x border-primary/5 last:border-r-0 first:border-l-0">
+        <div className="flex flex-col items-center animate-fade-in group py-8">
             <div className="text-primary/40 mb-6 group-hover:text-primary transition-colors duration-500">
                 {icon}
             </div>
             <AnimatedCounter target={value} suffix={suffix} />
-            <p className="text-foreground/50 text-[10px] sm:text-xs tracking-[0.3em] uppercase mt-6 font-medium">{label}</p>
+            <p className="text-foreground/50 text-xs tracking-[0.3em] uppercase mt-6 font-medium">{label}</p>
         </div>
     );
 };
@@ -101,13 +102,14 @@ const Stats = () => {
 
     return (
         <section className="py-24 bg-background relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
-            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
-
             <div className="container max-w-6xl mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border-y border-primary/10">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-0">
                     {stats.map((stat, index) => (
-                        <div key={index} style={{ animationDelay: `${index * 150}ms` }}>
+                        <div
+                            key={index}
+                            style={{ animationDelay: `${index * 150}ms` }}
+                            className="border-none"
+                        >
                             <StatItem
                                 icon={stat.icon}
                                 value={stat.value}

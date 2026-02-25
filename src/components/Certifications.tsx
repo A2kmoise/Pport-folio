@@ -52,11 +52,10 @@ const Certifications = () => {
           <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
             Recognition
           </p>
-          <h2 className="text-4xl sm:text-5xl font-serif text-primary mb-6">
+          <h2 className="text-3xl sm:text-5xl font-serif text-primary mb-6">
             CyberSecurity <span className="italic opacity-80">Certifications</span>
           </h2>
-          <div className="w-20 h-px bg-primary/30 mx-auto mb-6" />
-          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg">
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-base sm:text-lg">
             Professional credentials in cybersecurity and cloud infrastructure.
           </p>
         </div>
@@ -125,7 +124,7 @@ const Certifications = () => {
           <Button
             variant="outline"
             size="lg"
-            className="rounded-none px-12 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider text-xs"
+            className="rounded-none px-12 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider text-xs w-full sm:w-auto"
             onClick={() => navigate("/certificates")}
           >
             ALL CREDENTIALS
