@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { toast } from "sonner";
+import emailjs from "emailjs-com";
 
 interface ContactFormProps {
     className?: string;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
+    const formRef = useRef<HTMLFormElement | null>(null);
+    const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         message: ""
     });
-    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -23,15 +25,34 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Here you would typically send the form data to a server
-        console.log("Form submitted:", formData);
+        if (!formRef.current) return;
 
-        toast.success("Message sent successfully! I'll get back to you soon.", {
-            description: "Thanks for reaching out!",
-            duration: 5000,
-        });
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
-        setFormData({ name: "", email: "", message: "" });
+        if (!serviceId || !templateId || !publicKey) {
+            setStatus("error");
+            toast.error("Email service is not configured.");
+            return;
+        }
+
+        setStatus("sending");
+        emailjs
+            .sendForm(serviceId, templateId, formRef.current, publicKey)
+            .then(() => {
+                setStatus("sent");
+                toast.success("Message sent successfully! I'll get back to you soon.", {
+                    description: "Thanks for reaching out!",
+                    duration: 5000,
+                });
+                formRef.current?.reset();
+                setFormData({ name: "", email: "", message: "" });
+            })
+            .catch(() => {
+                setStatus("error");
+                toast.error("Failed to send message. Please try again.");
+            });
     };
 
     return (
@@ -43,7 +64,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
                         "Ready to initiate a new project? Just contact me
                     </p>
 
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
+                        <input
+                            type="hidden"
+                            name="title"
+                            value={formData.name ? `New message from ${formData.name}` : "New contact request"}
+                        />
+                        <input type="hidden" name="reply_to" value={formData.email} />
                         <div className="space-y-2">
                             <label htmlFor="name" className="block text-[10px] tracking-[0.3em] font-medium text-foreground/40 uppercase">
                                 Full Name
@@ -94,6 +121,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
 
                         <button
                             type="submit"
+                            disabled={status === "sending"}
                             className="w-full h-14 bg-primary text-primary-foreground rounded-none hover:bg-primary/90 transition-all duration-500 tracking-[0.2em] font-medium text-xs uppercase flex items-center justify-center gap-3"
                         >
                             <svg
