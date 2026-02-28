@@ -27,9 +27,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
         e.preventDefault();
         if (!formRef.current) return;
 
-        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
-        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
-        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+        const normalizeEnv = (value: string | undefined) =>
+            value?.trim().replace(/^['"]|['"]$/g, "");
+
+        const serviceId = normalizeEnv(import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined);
+        const templateId = normalizeEnv(import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined);
+        const publicKey = normalizeEnv(import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined);
 
         if (!serviceId || !templateId || !publicKey) {
             setStatus("error");
@@ -49,9 +52,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
                 formRef.current?.reset();
                 setFormData({ name: "", email: "", message: "" });
             })
-            .catch(() => {
+            .catch((err: unknown) => {
                 setStatus("error");
-                toast.error("Failed to send message. Please try again.");
+                console.error("EmailJS sendForm failed:", err);
+                const message = err instanceof Error ? err.message : "Failed to send message. Please try again.";
+                toast.error(message);
             });
     };
 
@@ -70,7 +75,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = "" }) => {
                             name="title"
                             value={formData.name ? `New message from ${formData.name}` : "New contact request"}
                         />
-                        <input type="hidden" name="reply_to" value={formData.email} />
                         <div className="space-y-2">
                             <label htmlFor="name" className="block text-[10px] tracking-[0.3em] font-medium text-foreground/40 uppercase">
                                 Full Name
