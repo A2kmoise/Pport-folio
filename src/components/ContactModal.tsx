@@ -1,5 +1,7 @@
+import React, { useRef, useState } from "react";
 import { X } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from "emailjs-com";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -9,10 +11,41 @@ interface ContactModalProps {
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you! Your message has been sent successfully.");
-    onClose();
+    if (!formRef.current) return;
+
+    const normalizeEnv = (value: string | undefined) =>
+      value?.trim().replace(/^['"]|['"]$/g, "");
+
+    const serviceId = normalizeEnv(import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined);
+    const templateId = normalizeEnv(import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined);
+    const publicKey = normalizeEnv(import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined);
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus("error");
+      toast.error("Email service is not configured.");
+      return;
+    }
+
+    setStatus("sending");
+    emailjs
+      .sendForm(serviceId, templateId, formRef.current, publicKey)
+      .then(() => {
+        setStatus("sent");
+        toast.success("Thank you! Your message has been sent successfully.");
+        formRef.current?.reset();
+        onClose();
+      })
+      .catch((err: unknown) => {
+        setStatus("error");
+        console.error("EmailJS sendForm failed:", err);
+        const message = err instanceof Error ? err.message : "Failed to send message. Please try again.";
+        toast.error(message);
+      });
   };
 
   return (
@@ -45,11 +78,13 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
           Send a Message
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+          <input type="hidden" name="title" value="New contact request" />
           <div>
             <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">Your Name</label>
             <input
               id="name"
+              name="name"
               type="text"
               placeholder="Your Name"
               required
@@ -62,6 +97,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
             <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">Your Email</label>
             <input
               id="email"
+              name="email"
               type="email"
               placeholder="Your Email"
               required
@@ -74,6 +110,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
             <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">Your Message</label>
             <textarea
               id="message"
+              name="message"
               rows={5}
               placeholder="Tell me about your project..."
               required
@@ -84,6 +121,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
           <button
             type="submit"
+            disabled={status === "sending"}
             className="w-full py-3 px-4 bg-primary text-white rounded-lg hover:shadow-glow transition-all duration-300 font-semibold text-base flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-card"
           >
             <svg
