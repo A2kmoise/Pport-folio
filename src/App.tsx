@@ -28,7 +28,12 @@ const App = () => {
         <Toaster />
         <Sonner />
         <MatrixRain />
-        <BrowserRouter>
+        <BrowserRouter
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+          }}
+        >
           <ScrollToTop />
           <Navbar onOpenContact={() => setIsContactModalOpen(true)} />
           <Routes>
