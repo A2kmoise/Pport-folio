@@ -75,7 +75,7 @@ const Hero = () => {
               className="group rounded-none px-10 h-14 bg-primary text-primary-foreground hover:bg-primary/80 transition-all duration-500 w-full sm:w-auto"
               asChild
             >
-              <a href="/CV.pdf" download>
+              <a href="/Professional CV.pdf" download>
                 DOWNLOAD CV
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
