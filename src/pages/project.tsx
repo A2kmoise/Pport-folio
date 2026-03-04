@@ -4,6 +4,7 @@ import ecommerceAPI from "@/assets/ecommerce-tech.png";
 import snapLink from "@/assets/snaplink.png";
 import Lumina from "@/assets/lumina.png";
 import supaMenu from "@/assets/supamenu.png";
+import Cconnect from "@/assets/Cconnect.png";
 import { useNavigate } from "react-router-dom";
 import { Github, ExternalLink } from "lucide-react";
 
@@ -36,6 +37,15 @@ const ProjectPage = () => {
       demo: "#"
     },
     {
+      title: "C-connect",
+      image:Cconnect,
+      description: "A web based platform for best campus announcements for a professional communication",
+      technologies: ["React", "Java", "Mysql", "SpringBoot"],
+      github: "https://github.com/A2kmoise/C-connect",
+      demo: "#"
+    },
+
+    {
       title: "Lumina",
       image: Lumina,
       description: "A mobile app linking farmers and drivers in Rwanda to facilitate transportation and logistics (Backend).",
@@ -51,6 +61,7 @@ const ProjectPage = () => {
       github: "https://github.com/A2kmoise/swift-finApp",
       demo: "#"
     }
+
   ];
 
   return (
