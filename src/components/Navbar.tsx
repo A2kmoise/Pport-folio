@@ -126,13 +126,13 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8 lg:gap-10">
+                    <div className="hidden lg:flex items-center gap-6 xl:gap-10">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.id}
                                 to={link.href}
                                 onClick={() => handleNavClick(link.href, link.id)}
-                                className={`py-1 transition-all duration-300 relative group text-xs lg:text-sm tracking-[0.2em] uppercase ${activeSection === link.id
+                                className={`py-1 transition-all duration-300 relative group text-[10px] xl:text-sm tracking-[0.15em] xl:tracking-[0.2em] uppercase ${activeSection === link.id
                                     ? "text-primary"
                                     : "text-foreground/50 hover:text-primary"
                                     }`}
@@ -146,7 +146,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
                     {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
-                        className="hidden md:flex p-2 text-foreground/40 hover:text-primary transition-all duration-300 focus:outline-none"
+                        className="hidden lg:flex p-2 text-foreground/40 hover:text-primary transition-all duration-300 focus:outline-none"
                         aria-label="Toggle theme"
                     >
                         {isDark ? (
@@ -159,7 +159,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden p-2 text-primary focus:outline-none"
+                        className="lg:hidden p-2 text-primary focus:outline-none"
                         aria-label="Toggle navigation menu"
                     >
                         {isOpen ? (
@@ -172,7 +172,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
 
                 {/* Mobile Navigation Menu */}
                 {isOpen && (
-                    <div className="md:hidden fixed inset-0 z-50 bg-background w-screen h-screen animate-in fade-in duration-300">
+                    <div className="lg:hidden fixed inset-0 z-50 bg-background w-screen h-screen animate-in fade-in duration-300">
                         <div className="flex flex-col h-full container px-6 py-6">
                             <div className="flex items-center justify-between h-20 sm:h-24 mb-8">
                                 <Link

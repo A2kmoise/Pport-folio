@@ -50,9 +50,9 @@ const Contact = ({ isModalOpen = false, setIsModalOpen = () => { } }: ContactPro
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left side - Contact Methods */}
-          <div className="md:col-span-6 lg:col-span-5 flex flex-col gap-6">
+          <div className="lg:col-span-5 flex flex-col gap-6">
             {contactMethods.map((method, index) => (
               <div
                 key={index}
@@ -84,7 +84,7 @@ const Contact = ({ isModalOpen = false, setIsModalOpen = () => { } }: ContactPro
           </div>
 
           {/* Right side - Contact Form */}
-          <div className="md:col-span-6 lg:col-span-7">
+          <div className="lg:col-span-7">
             <ContactForm className="w-full animate-fade-in animation-delay-400" />
           </div>
         </div>

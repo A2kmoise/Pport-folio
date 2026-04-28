@@ -27,7 +27,7 @@ const Hero = () => {
             <div className="absolute -inset-4 border border-primary/20 scale-95 group-hover:scale-100 transition-transform duration-700" />
             <div className="absolute -inset-2 border border-primary/40 scale-90 group-hover:scale-105 transition-transform duration-700 delay-100" />
 
-            <div className="relative w-64 h-80 sm:w-72 sm:h-96 overflow-hidden">
+            <div className="relative w-56 h-72 xs:w-64 xs:h-80 sm:w-72 sm:h-96 overflow-hidden">
               <img
                 src={profileImage}
                 alt="ABAYO Moise"
@@ -43,7 +43,7 @@ const Hero = () => {
             <p className="text-primary font-medium tracking-[0.3em] uppercase text-sm animate-fade-in">
               Portfolio
             </p>
-            <h1 className="text-[2.5rem] xs:text-5xl sm:text-7xl lg:text-8xl font-serif text-primary leading-[1.1] animate-fade-in animation-delay-300">
+            <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-8xl font-serif text-primary leading-[1.1] animate-fade-in animation-delay-300">
               ABAYO <br />
               <span className="italic opacity-90">Moise</span>
             </h1>
@@ -51,7 +51,7 @@ const Hero = () => {
 
           <div className="space-y-6 animate-fade-in animation-delay-500">
             <div className="inline-block relative">
-              <h2 className="text-xl sm:text-3xl font-serif italic text-foreground/90">
+              <h2 className="text-lg xs:text-xl md:text-2xl lg:text-3xl font-serif italic text-foreground/90">
                 Full-Stack Developer <span className="mx-2 not-italic text-primary/30">|</span> Cybersecurity Enthusiast
               </h2>
               {/* Optional: Add back the small line under title if requested, but user said 'lines on photo only' mostly. I'll stick to photo lines. Wait, user said 'put those lines you used earlier on the photo only' which implies removing them from elsewhere and putting them there. I already removed them from elsewhere. */}
