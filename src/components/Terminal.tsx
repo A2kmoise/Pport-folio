@@ -120,8 +120,9 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         "1. PublicPulse - Government transparency platform",
         "2. E-commerce API - Scalable backend for online stores",
         "3. SnapLink - Modern URL shortener",
-        "4. Lumina - Agrotech logistics platform",
-        "5. SupaMenu - Food ordering iOS app"
+        "4.C-connect - Campus announcement platform",
+        "5. Lumina - Agrotech logistics platform",
+        "6. SupaMenu - Food ordering iOS app"
       ]);
     },
     contact: () => {
