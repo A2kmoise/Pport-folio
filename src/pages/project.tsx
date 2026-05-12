@@ -23,10 +23,10 @@ const ProjectPage = () => {
     {
       title: "E-commerce API",
       image: ecommerceAPI,
-      description: "A RESTful API for an e-commerce platform, enabling product management, user authentication, and order processing with over 17 endpoints.",
+      description: "A RESTful API for an e-commerce platform, for both buyer and vendor  with over 17 endpoints.",
       technologies: ["Nest.js", "Node.js", "PostgreSQL", "JWT"],
       github: "https://github.com/A2kmoise/E-commerce",
-      demo: "#"
+      demo: "https://fullgvt.onrender.com"
     },
     {
       title: "SnapLink",
@@ -51,7 +51,7 @@ const ProjectPage = () => {
       description: "A mobile app linking farmers and drivers in Rwanda to facilitate transportation and logistics (Backend).",
       technologies: ["ReactNative", "Nest.js", "PostgreSQL"],
       github: "https://github.com/A2kmoise/Lumina-API",
-      demo: "#"
+      demo: "https://rento-api-p2bt.onrender.com"
     },
     {
       title: "SupaMenu",
