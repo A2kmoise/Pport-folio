@@ -26,7 +26,7 @@ const ProjectPage = () => {
       description: "A RESTful API for an e-commerce platform, for both buyer and vendor  with over 17 endpoints.",
       technologies: ["Nest.js", "Node.js", "PostgreSQL", "JWT"],
       github: "https://github.com/A2kmoise/E-commerce",
-      demo: "https://fullgvt.onrender.com"
+      demo: "https://rento-api-p2bt.onrender.com"
     },
     {
       title: "SnapLink",
