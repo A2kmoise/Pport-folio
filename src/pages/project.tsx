@@ -18,7 +18,7 @@ const ProjectPage = () => {
       description: "A government transparency platform that helps citizens share their problems with the government to be solved.",
       technologies: ["React", "Node.js", "MongoDB", "Express"],
       github: "https://github.com/A2kmoise/PublicPusle-fullStuck",
-      demo: "#"
+      demo: "https://publicpulse-eosin.vercel.app/"
     },
     {
       title: "E-commerce API",
