@@ -40,7 +40,7 @@ const ProjectPage = () => {
       title: "C-connect",
       image:Cconnect,
       description: "A web based platform for best campus announcements for a professional communication",
-      technologies: ["React", "Java", "Mysql", "SpringBoot"],
+      technologies: ["JSP", "Java", "Mysql", "Servlet"],
       github: "https://github.com/A2kmoise/C-connect",
       demo: "#"
     },
@@ -57,7 +57,7 @@ const ProjectPage = () => {
       title: "SupaMenu",
       image: supaMenu,
       description: "An ios mobile app for ordering food to the nearest restaurant.",
-      technologies: ["Swift", "Node.js", "PostgreSQL", "SwiftUI"],
+      technologies: ["Swift", "Vapor", "PostgreSQL", "SwiftUI"],
       github: "https://github.com/A2kmoise/swift-finApp",
       demo: "#"
     }
