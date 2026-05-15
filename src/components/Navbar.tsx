@@ -21,6 +21,14 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
         const shouldBeDark = savedTheme ? savedTheme === "dark" : prefersDark;
         setIsDark(shouldBeDark);
         updateTheme(shouldBeDark);
+
+        const handleThemeChange = (e: any) => {
+            const newTheme = e.detail.theme;
+            setIsDark(newTheme === "dark");
+        };
+
+        window.addEventListener("theme-change", handleThemeChange);
+        return () => window.removeEventListener("theme-change", handleThemeChange);
     }, []);
 
     const updateTheme = (dark: boolean) => {
