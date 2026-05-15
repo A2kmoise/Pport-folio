@@ -86,7 +86,8 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         "  skills         - See my technical stack",
         "  projects       - View my work",
         "  contact        - Get my contact info",
-        "  theme [name]   - Switch theme (classic, midnight)",
+        "  theme [name]   - Switch terminal theme (classic, midnight)",
+        "  mode [mode]    - Switch system mode (dark, light)",
         "  hack --matrix  - Trigger digital rain sequence",
         "  sudo --reveal  - Reveal hidden system architecture",
         "  whoami         - Display current user identity",
@@ -141,13 +142,42 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         setHistory(prev => [
           ...prev,
           <div className="flex gap-2 font-mono items-center">{prompt} <span>theme {newTheme}</span></div>,
-          `Theme changed to ${newTheme}.`
+          `Terminal theme changed to ${newTheme}.`
         ]);
       } else {
         setHistory(prev => [
           ...prev,
           <div className="flex gap-2 font-mono items-center">{prompt} <span>theme {args?.[0] || ""}</span></div>,
           "Usage: theme [classic | midnight]"
+        ]);
+      }
+    },
+    mode: (args) => {
+      const mode = args?.[0]?.toLowerCase();
+      const targetMode = (mode === 'dark' || mode === 'd') ? 'dark' : (mode === 'light' || mode === 'l') ? 'light' : null;
+
+      if (targetMode) {
+        const html = document.documentElement;
+        if (targetMode === 'dark') {
+          html.classList.remove('light');
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          html.classList.remove('dark');
+          html.classList.add('light');
+          localStorage.setItem('theme', 'light');
+        }
+        window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: targetMode } }));
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>mode {mode}</span></div>,
+          `System mode changed to ${targetMode}.`
+        ]);
+      } else {
+        setHistory(prev => [
+          ...prev,
+          <div className="flex gap-2 font-mono items-center">{prompt} <span>mode {args?.[0] || ""}</span></div>,
+          "Usage: mode [dark (d) | light (l)]"
         ]);
       }
     },
