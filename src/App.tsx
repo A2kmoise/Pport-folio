@@ -15,16 +15,19 @@ import Terminal from "@/components/Terminal";
 import { Terminal as TerminalIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MatrixRain from "./components/MatrixRain";
+import Loader from "./components/Loader";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        {isLoading && <Loader onFinished={() => setIsLoading(false)} />}
         <Toaster />
         <Sonner />
         <MatrixRain />
