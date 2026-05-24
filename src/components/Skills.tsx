@@ -63,6 +63,8 @@ const Skills = () => {
       skills: ["LLMs", "OpenAI API", "TensorFlow", "PyTorch"],
       color: "primary"
     }
+
+    
     ];
 
   return (
