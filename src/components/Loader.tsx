@@ -21,12 +21,12 @@ const Loader: React.FC<LoaderProps> = ({ onFinished }) => {
           return 100;
         }
         
-        // Add random progress step for a natural look
-        const step = Math.floor(Math.random() * 8) + 4;
+        // Small random progress step to make it load slower and feel more realistic
+        const step = Math.floor(Math.random() * 3) + 2;
         const next = Math.min(prev + step, 100);
         return next;
       });
-    }, 100);
+    }, 120);
 
     return () => {
       clearInterval(timer);
@@ -43,7 +43,7 @@ const Loader: React.FC<LoaderProps> = ({ onFinished }) => {
           if (onFinished) onFinished();
         }, 800); // matches the transition duration in CSS
         return () => clearTimeout(finishTimeout);
-      }, 500); // pause briefly at 100% to let the user see it complete
+      }, 800); // pause briefly at 100% to let the user see it complete
       return () => clearTimeout(fadeTimeout);
     }
   }, [progress, onFinished]);
