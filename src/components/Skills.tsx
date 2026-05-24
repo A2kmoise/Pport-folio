@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LayoutDashboard, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, Zap, LayoutDashboardIcon, ArrowRight } from "lucide-react";
+import { LayoutDashboardIcon, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, ArrowRight, Brain, Database } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -8,53 +8,65 @@ const Skills = () => {
   const navigate = useNavigate();
   const techStacks = [
     {
-      icon: <LayoutDashboardIcon className="w-10 h-10 text-tech-react" />,
+      icon: <LayoutDashboardIcon className="w-10 h-10" />,
       title: "Frontend Development",
       description: "Building responsive, interactive user interfaces",
       skills: ["React", "TypeScript", "Tailwind CSS", "Bootstrap CSS", "Next.js", "Redux"],
       color: "tech-react"
     },
     {
-      icon: <ServerCog className="w-10 h-10 text-tech-node" />,
+      icon: <ServerCog className="w-10 h-10" />,
       title: "Backend Development",
       description: "Scalable server-side applications and APIs",
       skills: ["Express.js", "Node.js", "RESTful APIs", "GraphQL", "WebSocket", "PHP", "Laravel", "Django"],
       color: "tech-node"
     },
     {
-      icon: <Smartphone className="w-10 h-10 text-tech-nest" />,
+      icon: <Smartphone className="w-10 h-10" />,
       title: "Mobile Development",
       description: "Cross-platform and native mobile applications",
       skills: ["React Native", "Swift", "Expo"],
       color: "tech-nest"
     },
     {
-      icon: <Boxes className="w-10 h-10 text-tech-spring" />,
+      icon: <Boxes className="w-10 h-10" />,
       title: "Enterprise Frameworks",
       description: "Enterprise-grade applications and microservices",
       skills: ["NestJS", "Spring Boot", "Java", "Microservices", "Docker"],
       color: "tech-spring"
     },
     {
-      icon: <Cloud className="w-10 h-10 text-tech-security" />,
-      title: "Database & Infrastructure",
-      description: "Data management and cloud deployment",
-      skills: ["PostgreSQL", "MongoDB", "MySQL", "AWS", "Google Cloud"],
+      icon: <Database className="w-10 h-10" />,
+      title: "Databases & Storage",
+      description: "Robust and optimized data persistence",
+      skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis"],
       color: "tech-security"
     },
     {
-      icon: <ShieldCheck className="w-10 h-10 text-primary" />,
+      icon: <Cloud className="w-10 h-10" />,
+      title: "Cloud & DevOps",
+      description: "Hosting, containerization, and automation",
+      skills: ["AWS", "Google Cloud", "CI/CD", "Linux", "Docker"],
+      color: "tech-security"
+    },
+    {
+      icon: <ShieldCheck className="w-10 h-10" />,
       title: "Cybersecurity",
       description: "Security-first development and infrastructure hardening",
       skills: ["Ethical Hacking", "Penetration Testing", "Security Audits"],
       color: "primary"
+    },
+    {
+      icon: <Brain className="w-10 h-10" />,
+      title: "AI & Machine Learning",
+      description: "Intelligent agent integration and prompt orchestration",
+      skills: ["LLMs", "OpenAI API", "TensorFlow", "PyTorch"],
+      color: "primary"
     }
-  ];
-
+    ];
 
   return (
     <section id="skills" className="py-24 bg-background relative overflow-hidden">
-
       <div className="container max-w-6xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <p className="text-primary font-medium tracking-[0.3em] uppercase text-xs mb-4">
@@ -64,11 +76,11 @@ const Skills = () => {
             Technical Proficiency
           </h2>
           <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-base sm:text-lg">
-            A comprehensive suite of tools and frameworks for modern enterprise development.
+            A comprehensive suite of tools, frameworks, and modern technologies for enterprise solutions.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
           {techStacks.map((stack, index) => (
             <Card
               key={index}
