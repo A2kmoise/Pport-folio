@@ -111,7 +111,8 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         "Backend: Node.js, Express, NestJS, Spring Boot, Java",
         "Mobile: React Native, Swift",
         "Database: PostgreSQL, MongoDB, MySQL",
-        "Security: Ethical Hacking, Penetration Testing"
+        "Security: Ethical Hacking, Penetration Testing",
+        "AI / ML: LLMs, OpenAI API, TensorFlow, PyTorch"
       ]);
     },
     projects: () => {

@@ -65,7 +65,7 @@ const Skills = () => {
     }
 
     
-    ];
+  ];
 
   return (
     <section id="skills" className="py-24 bg-background relative overflow-hidden">
