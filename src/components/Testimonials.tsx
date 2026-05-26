@@ -11,13 +11,13 @@ const testimonials = [
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Elena"
   },
   {
-    name: "Marcus Holloway",
+    name: "Byiringiro Samuel",
     role: "Senior Full-Stack Engineer",
     content: "Working with Moise was a breeze. His ability to bridge the gap between complex backend logic and sleek React frontends is impressive. A true professional in every sense.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus"
   },
   {
-    name: "Sarah Chen",
+    name: "Iradukunda Ange",
     role: "CTO, TechGuard Solutions",
     content: "The penetration testing Moise performed on our systems uncovered critical vulnerabilities we hadn't even considered. His report was thorough, actionable, and vital to our security.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
