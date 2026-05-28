@@ -8,17 +8,17 @@ const testimonials = [
     name: "Dr. Elena Vance",
     role: "Lead Cybersecurity Architect",
     content: "Moise's attention to security detail is unparalleled. He doesn't just build features; he builds fortresses. His Spring Boot implementations are clean, efficient, and robust.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Elena"
-  },
-  {
-    name: "Byiringiro Samuel",
-    role: "Senior Full-Stack Engineer",
-    content: "Working with Moise was a breeze. His ability to bridge the gap between complex backend logic and sleek React frontends is impressive. A true professional in every sense.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus"
   },
   {
+    name: "Byiringiro Samuel",
+    role: "C0-Founder, BlinkTech",
+    content: "Working with him was a great experience. He’s creative, skilled, and always pays attention to detail when building projects. His work is clean, modern, and user friendly, and he’s clearly passionate about development.",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Samuel"
+  },
+  {
     name: "Iradukunda Ange",
-    role: "CTO, TechGuard Solutions",
+    role: "Senior Software Engineer",
     content: "The penetration testing Moise performed on our systems uncovered critical vulnerabilities we hadn't even considered. His report was thorough, actionable, and vital to our security.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
   }

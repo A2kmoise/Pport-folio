@@ -44,8 +44,8 @@ const Hero = () => {
               Portfolio
             </p>
             <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-8xl font-serif text-primary leading-[1.1] animate-fade-in animation-delay-300">
-              ABAYO <br />
-              <span className="italic opacity-90">Moise</span>
+             
+              <span className="italic opacity-90"> ABAYO Moise</span>
             </h1>
           </div>
 
