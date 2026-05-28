@@ -188,7 +188,7 @@ const Navbar = ({ onOpenContact }: NavbarProps) => {
                                     onClick={() => { setActiveSection("home"); setIsOpen(false); }}
                                     className="text-2xl font-serif text-primary tracking-tight"
                                 >
-                                    MOISE <span className="italic opacity-80 font-normal">.dev</span>
+                                    <span className="italic opacity-80 font-normal">MOISE.dev</span>
                                 </Link>
                                 <button
                                     onClick={() => setIsOpen(false)}
