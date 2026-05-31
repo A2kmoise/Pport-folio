@@ -175,6 +175,15 @@ body {
   .animation-delay-2000 {
     animation-delay: 2000ms;
   }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 /* Scroll animation keyframes */
