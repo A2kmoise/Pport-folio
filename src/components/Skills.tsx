@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LayoutDashboardIcon, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, ArrowRight, Brain, Database } from "lucide-react";
+import { LayoutDashboardIcon, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, ArrowRight, Brain, Database, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -82,43 +82,50 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+        {/* Mobile Swipe Indicator */}
+        <div className="flex items-center justify-end gap-2 mb-4 pr-6 text-primary/70 md:hidden animate-fade-in">
+          <span className="text-xs uppercase tracking-widest font-medium">Swipe</span>
+          <ChevronRight className="w-4 h-4 animate-pulse" />
+        </div>
+
+        <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-8 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:pb-0 gap-6 mb-8 md:mb-16">
           {techStacks.map((stack, index) => (
-            <Card
-              key={index}
-              className="bg-card/30 backdrop-blur-sm border border-primary/10 rounded-none hover:border-primary/40 transition-all duration-700 group h-full overflow-hidden animate-fade-in shadow-none"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <CardHeader className="pb-4 relative z-10 space-y-4">
-                <div className="w-14 h-14 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors duration-500">
-                  {/* Clone icon to apply primary color */}
-                  {Object.assign({}, stack.icon, {
-                    props: { ...stack.icon.props, className: "w-6 h-6 text-primary opacity-80 group-hover:opacity-100 transition-all duration-500" }
-                  })}
-                </div>
-                <div className="space-y-1">
-                  <CardTitle className="text-xl font-serif italic text-foreground group-hover:text-primary transition-colors duration-500">
-                    {stack.title}
-                  </CardTitle>
-                  <CardDescription className="text-foreground/50 leading-relaxed font-sans text-sm">
-                    {stack.description}
-                  </CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent className="pb-8 relative z-10">
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {stack.skills.map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      variant="outline"
-                      className="rounded-none bg-transparent text-foreground/70 border-primary/10 group-hover:border-primary/30 transition-all duration-500 px-3 py-1 text-[10px] tracking-widest uppercase font-medium"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <div key={index} className="w-[85vw] sm:w-[60vw] md:w-auto flex-shrink-0 snap-center">
+              <Card
+                className="bg-card/30 backdrop-blur-sm border border-primary/10 rounded-none hover:border-primary/40 transition-all duration-700 group h-full overflow-hidden animate-fade-in shadow-none"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardHeader className="pb-4 relative z-10 space-y-4">
+                  <div className="w-14 h-14 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors duration-500">
+                    {/* Clone icon to apply primary color */}
+                    {Object.assign({}, stack.icon, {
+                      props: { ...stack.icon.props, className: "w-6 h-6 text-primary opacity-80 group-hover:opacity-100 transition-all duration-500" }
+                    })}
+                  </div>
+                  <div className="space-y-1">
+                    <CardTitle className="text-xl font-serif italic text-foreground group-hover:text-primary transition-colors duration-500">
+                      {stack.title}
+                    </CardTitle>
+                    <CardDescription className="text-foreground/50 leading-relaxed font-sans text-sm">
+                      {stack.description}
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+                <CardContent className="pb-8 relative z-10">
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {stack.skills.map((skill, skillIndex) => (
+                      <Badge
+                        key={skillIndex}
+                        variant="outline"
+                        className="rounded-none bg-transparent text-foreground/70 border-primary/10 group-hover:border-primary/30 transition-all duration-500 px-3 py-1 text-[10px] tracking-widest uppercase font-medium"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
 
