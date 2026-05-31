@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Shield, Award, Lock, Eye, ExternalLink, ArrowRight } from "lucide-react";
+import { Shield, Award, Lock, Eye, ExternalLink, ArrowRight, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Certifications = () => {
@@ -60,63 +60,70 @@ const Certifications = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
+        {/* Mobile Swipe Indicator */}
+        <div className="flex items-center justify-end gap-2 mb-4 pr-6 text-primary/70 md:hidden animate-fade-in">
+          <span className="text-xs uppercase tracking-widest font-medium">Swipe</span>
+          <ChevronRight className="w-4 h-4 animate-pulse" />
+        </div>
+
+        <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-8 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-2 md:pb-0 gap-8 mb-8 md:mb-16">
           {certifications.map((cert, index) => (
-            <Card
-              key={index}
-              className="bg-card/30 backdrop-blur-sm border border-primary/10 rounded-none hover:border-primary/40 transition-all duration-700 group relative overflow-hidden h-full animate-fade-in shadow-none"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <CardHeader className="pb-4 relative z-10 space-y-4">
-                <div className="flex items-start justify-between">
-                  <div className="w-14 h-14 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors duration-500">
-                    {Object.assign({}, cert.icon, {
-                      props: { ...cert.icon.props, className: "w-6 h-6 text-primary opacity-80 group-hover:opacity-100 transition-all duration-500" }
-                    })}
+            <div key={index} className="w-[85vw] sm:w-[70vw] md:w-auto flex-shrink-0 snap-center">
+              <Card
+                className="bg-card/30 backdrop-blur-sm border border-primary/10 rounded-none hover:border-primary/40 transition-all duration-700 group relative overflow-hidden h-full animate-fade-in shadow-none"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardHeader className="pb-4 relative z-10 space-y-4">
+                  <div className="flex items-start justify-between">
+                    <div className="w-14 h-14 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors duration-500">
+                      {Object.assign({}, cert.icon, {
+                        props: { ...cert.icon.props, className: "w-6 h-6 text-primary opacity-80 group-hover:opacity-100 transition-all duration-500" }
+                      })}
+                    </div>
+                    {cert.verified && (
+                      <Badge variant="outline" className="rounded-none border-primary/20 text-primary text-[10px] tracking-widest uppercase font-medium px-3 py-1">
+                        VERIFIED
+                      </Badge>
+                    )}
                   </div>
-                  {cert.verified && (
-                    <Badge variant="outline" className="rounded-none border-primary/20 text-primary text-[10px] tracking-widest uppercase font-medium px-3 py-1">
-                      VERIFIED
-                    </Badge>
-                  )}
-                </div>
-                <div className="space-y-1">
-                  <CardTitle className="text-2xl font-serif italic text-foreground group-hover:text-primary transition-colors duration-500">
-                    {cert.title}
-                  </CardTitle>
-                  <CardDescription className="text-foreground/50 leading-relaxed font-sans text-sm">
-                    <span className="text-primary/70">{cert.issuer}</span> • {cert.date}
-                  </CardDescription>
-                </div>
-              </CardHeader>
+                  <div className="space-y-1">
+                    <CardTitle className="text-2xl font-serif italic text-foreground group-hover:text-primary transition-colors duration-500">
+                      {cert.title}
+                    </CardTitle>
+                    <CardDescription className="text-foreground/50 leading-relaxed font-sans text-sm">
+                      <span className="text-primary/70">{cert.issuer}</span> • {cert.date}
+                    </CardDescription>
+                  </div>
+                </CardHeader>
 
-              <CardContent className="pb-8 relative z-10 space-y-6">
-                <p className="text-foreground/60 leading-relaxed font-sans text-sm italic">
-                  "{cert.description}"
-                </p>
+                <CardContent className="pb-8 relative z-10 space-y-6">
+                  <p className="text-foreground/60 leading-relaxed font-sans text-sm italic">
+                    "{cert.description}"
+                  </p>
 
-                <div className="flex flex-wrap gap-2">
-                  {cert.skills.map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      variant="outline"
-                      className="rounded-none bg-transparent text-foreground/70 border-primary/10 group-hover:border-primary/30 transition-all duration-500 px-3 py-1 text-[10px] tracking-widest uppercase font-medium"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
+                  <div className="flex flex-wrap gap-2">
+                    {cert.skills.map((skill, skillIndex) => (
+                      <Badge
+                        key={skillIndex}
+                        variant="outline"
+                        className="rounded-none bg-transparent text-foreground/70 border-primary/10 group-hover:border-primary/30 transition-all duration-500 px-3 py-1 text-[10px] tracking-widest uppercase font-medium"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
 
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full rounded-none border border-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-widest text-[10px] h-12 uppercase"
-                >
-                  <ExternalLink className="w-3 h-3 mr-2" />
-                  View Certification
-                </Button>
-              </CardContent>
-            </Card>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full rounded-none border border-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-widest text-[10px] h-12 uppercase"
+                  >
+                    <ExternalLink className="w-3 h-3 mr-2" />
+                    View Certification
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
 
