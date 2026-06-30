@@ -8,7 +8,7 @@ const testimonials = [
     name: "Dr. Elena Vance",
     role: "Lead Cybersecurity Architect",
     content: "Moise's attention to security detail is unparalleled. He doesn't just build features; he builds fortresses. His Spring Boot implementations are clean, efficient, and robust.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus"
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Moses"
   },
   {
     name: "Byiringiro Samuel",
@@ -17,7 +17,7 @@ const testimonials = [
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Samuel"
   },
   {
-    name: "Iradukunda Ange",
+    name: "Iradukunda Joyeuse",
     role: "Senior Software Engineer",
     content: "The penetration testing Moise performed on our systems uncovered critical vulnerabilities we hadn't even considered. His report was thorough, actionable, and vital to our security.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
