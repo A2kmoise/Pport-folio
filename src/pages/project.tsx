@@ -5,8 +5,10 @@ import snapLink from "@/assets/snaplink.png";
 import Lumina from "@/assets/lumina.png";
 import supaMenu from "@/assets/supamenu.png";
 import Cconnect from "@/assets/Cconnect.png";
+import Bora from "@/assets/bora.png";
 import { useNavigate } from "react-router-dom";
 import { Github, ExternalLink } from "lucide-react";
+import { title } from "process";
 
 const ProjectPage = () => {
   const navigate = useNavigate();
@@ -60,6 +62,14 @@ const ProjectPage = () => {
       technologies: ["Swift", "Vapor", "PostgreSQL", "SwiftUI"],
       github: "https://github.com/A2kmoise/swift-finApp",
       demo: "#"
+    },
+    {
+title:"BORA",
+image:Bora,
+description:"Bora is an AI powered app that helps companies post jobs and automatically upload the applicants CVs for the AI to rank and filter the best candidates. (Backend and AI integration)",
+technologies:["Nest.js","Gemini AI","PostgreSQL","JWT","Redis","typescript"],
+github:"#",
+demo:"https://bora-ai-web.vercel.app/"
     }
 
   ];
