@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import publicPulse from "@/assets/publicPulse.png";
 import ecommerceAPI from "@/assets/ecommerce-tech.png";
 import snapLink from "@/assets/snaplink.png";
@@ -6,16 +6,19 @@ import Lumina from "@/assets/lumina.png";
 import supaMenu from "@/assets/supamenu.png";
 import Cconnect from "@/assets/Cconnect.png";
 import Bora from "@/assets/bora.png";
+import menya from "@/assets/menya.png";
 import { useNavigate } from "react-router-dom";
-import { Github, ExternalLink } from "lucide-react";
-import { title } from "process";
-
+import { Github, ExternalLink, ChevronRight, Pointer } from "lucide-react";
 const ProjectPage = () => {
   const navigate = useNavigate();
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filters = ["All", "Frontend", "Backend", "Fullstack"];
 
   const projects = [
     {
       title: "PublicPulse",
+      category: "Fullstack",
       image: publicPulse,
       description: "A government transparency platform that helps citizens share their problems with the government to be solved.",
       technologies: ["React", "Node.js", "MongoDB", "Express"],
@@ -24,6 +27,7 @@ const ProjectPage = () => {
     },
     {
       title: "E-commerce API",
+      category: "Backend",
       image: ecommerceAPI,
       description: "A RESTful API for an e-commerce platform, for both buyer and vendor  with over 17 endpoints.",
       technologies: ["Nest.js", "Node.js", "PostgreSQL", "JWT"],
@@ -32,6 +36,7 @@ const ProjectPage = () => {
     },
     {
       title: "SnapLink",
+      category: "Fullstack",
       image: snapLink,
       description: "A modern URL shortener aimed at helping users shorten their links and share them easily.",
       technologies: ["React", "Node.js", "MongoDB", "Express"],
@@ -40,6 +45,7 @@ const ProjectPage = () => {
     },
     {
       title: "C-connect",
+      category: "Fullstack",
       image:Cconnect,
       description: "A web based platform for best campus announcements for a professional communication",
       technologies: ["JSP", "Java", "Mysql", "Servlet"],
@@ -49,6 +55,7 @@ const ProjectPage = () => {
 
     {
       title: "Lumina",
+      category: "Backend",
       image: Lumina,
       description: "A mobile app linking farmers and drivers in Rwanda to facilitate transportation and logistics (Backend).",
       technologies: ["ReactNative", "Nest.js", "PostgreSQL"],
@@ -57,6 +64,7 @@ const ProjectPage = () => {
     },
     {
       title: "SupaMenu",
+      category: "Frontend",
       image: supaMenu,
       description: "An ios mobile app for ordering food to the nearest restaurant.",
       technologies: ["Swift", "Vapor", "PostgreSQL", "SwiftUI"],
@@ -65,14 +73,27 @@ const ProjectPage = () => {
     },
     {
 title:"BORA",
+category: "Backend",
 image:Bora,
 description:"Bora is an AI powered app that helps companies post jobs and automatically upload the applicants CVs for the AI to rank and filter the best candidates. (Backend and AI integration)",
 technologies:["Nest.js","Gemini AI","PostgreSQL","JWT","Redis","typescript"],
 github:"#",
 demo:"https://bora-ai-web.vercel.app/"
+    },
+    {
+      title: "Menya",
+      category: "Frontend",
+      image: menya,
+      description: "A blog management app designed for author and blog readers as a platform for sharing news and updates",
+      technologies: ["React","typescript", "TailwindCSS"],
+      github: "https://github.com/A2kmoise/ibihe",
+      demo: "https://project-ylyx8.vercel.app/"
     }
-
   ];
+
+  const filteredProjects = projects.filter(
+    (project) => activeFilter === "All" || project.category.toLowerCase() === activeFilter.toLowerCase()
+  );
 
   return (
     <div className="min-h-screen px-6 py-24 bg-background text-foreground relative overflow-hidden">
@@ -94,16 +115,61 @@ demo:"https://bora-ai-web.vercel.app/"
             Selected <span className="italic opacity-80">Projects</span>
           </h1>
           <div className="w-24 h-px bg-primary/30 mx-auto mb-8" />
-          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg sm:text-xl italic">
+          <p className="text-foreground/60 max-w-2xl mx-auto leading-relaxed font-light text-lg sm:text-xl italic mb-12">
             "Design and engineering converge to create seamless digital architecture."
           </p>
+
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-6 py-2 text-xs tracking-widest uppercase transition-all duration-300 border ${
+                  activeFilter === filter
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-primary/20 text-foreground/60 hover:border-primary/60 hover:text-foreground"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-16">
-          {projects.map((project, index) => (
+        {/* Custom scrollbar styles for mobile swipe */}
+        <style>{`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          @keyframes swipeGesture {
+            0%, 100% { transform: translateX(0) rotate(-90deg); opacity: 0.8; }
+            50% { transform: translateX(-20px) rotate(-90deg); opacity: 0.3; }
+          }
+          .animate-swipe {
+            animation: swipeGesture 2.5s infinite ease-in-out;
+          }
+        `}</style>
+
+        {/* Mobile Swipe Indicator */}
+        <div className="md:hidden flex items-center justify-end gap-2 mb-6 text-primary/60 pr-2">
+          <span className="text-xs tracking-widest uppercase font-medium mr-2">Swipe</span>
+          <div className="flex items-center -space-x-1 opacity-70">
+            <ChevronRight className="w-4 h-4 animate-pulse" style={{ animationDelay: '0ms' }} />
+            <ChevronRight className="w-4 h-4 animate-pulse" style={{ animationDelay: '150ms' }} />
+            <ChevronRight className="w-4 h-4 animate-pulse" style={{ animationDelay: '300ms' }} />
+          </div>
+          <Pointer className="w-5 h-5 animate-swipe text-primary" />
+        </div>
+
+        <div className="flex overflow-x-auto snap-x snap-mandatory pb-12 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 hide-scrollbar md:overflow-visible">
+          {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="group flex flex-col animate-fade-in"
+              className="group flex flex-col animate-fade-in min-w-[85vw] sm:min-w-[400px] md:min-w-0 snap-center"
               style={{ animationDelay: `${index * 150}ms`, animation: `fadeIn 1s ease-out ${index * 150}ms forwards` }}
             >
               {/* Project Image Box */}
