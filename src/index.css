@@ -184,6 +184,10 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .animate-swipe {
+    animation: swipeGesture 2.5s infinite ease-in-out;
+  }
 }
 
 /* Scroll animation keyframes */
@@ -197,4 +201,9 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes swipeGesture {
+  0%, 100% { transform: translateX(0) rotate(-90deg); opacity: 0.8; }
+  50% { transform: translateX(-20px) rotate(-90deg); opacity: 0.3; }
 }
