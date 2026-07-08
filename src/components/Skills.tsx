@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { LayoutDashboardIcon, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, ArrowRight, Brain, Database, ChevronRight } from "lucide-react";
+import { LayoutDashboardIcon, ServerCog, Smartphone, Boxes, Cloud, ShieldCheck, ArrowRight, Brain, Database, ChevronRight, Pointer } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -84,8 +84,13 @@ const Skills = () => {
 
         {/* Mobile Swipe Indicator */}
         <div className="flex items-center justify-end gap-2 mb-4 pr-6 text-primary/70 md:hidden animate-fade-in">
-          <span className="text-xs uppercase tracking-widest font-medium">Swipe</span>
-          <ChevronRight className="w-4 h-4 animate-pulse" />
+          <span className="text-xs uppercase tracking-widest font-medium mr-2">Swipe</span>
+          <div className="flex items-center -space-x-1 opacity-70">
+            <ChevronRight className="w-4 h-4 animate-pulse" style={{ animationDelay: '0ms' }} />
+            <ChevronRight className="w-4 h-4 animate-pulse" style={{ animationDelay: '150ms' }} />
+            <ChevronRight className="w-4 h-4 animate-pulse" style={{ animationDelay: '300ms' }} />
+          </div>
+          <Pointer className="w-5 h-5 animate-swipe text-primary" />
         </div>
 
         <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-8 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:pb-0 gap-6 mb-8 md:mb-16">
