@@ -136,24 +136,6 @@ demo:"https://bora-ai-web.vercel.app/"
           </div>
         </div>
 
-        {/* Custom scrollbar styles for mobile swipe */}
-        <style>{`
-          .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-          .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-          @keyframes swipeGesture {
-            0%, 100% { transform: translateX(0) rotate(-90deg); opacity: 0.8; }
-            50% { transform: translateX(-20px) rotate(-90deg); opacity: 0.3; }
-          }
-          .animate-swipe {
-            animation: swipeGesture 2.5s infinite ease-in-out;
-          }
-        `}</style>
-
         {/* Mobile Swipe Indicator */}
         <div className="md:hidden flex items-center justify-end gap-2 mb-6 text-primary/60 pr-2">
           <span className="text-xs tracking-widest uppercase font-medium mr-2">Swipe</span>
