@@ -7,7 +7,7 @@ interface TerminalProps {
   onClose: () => void;
 }
 
-type Theme = 'classic' | 'midnight';
+type Theme = 'classic' | 'midnight' | 'light';
 
 const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
   const [theme, setTheme] = useState<Theme>('classic');
@@ -49,6 +49,19 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
       cursor: "#22d3ee",
       scrollbar: "#1e293b",
       scrollbarHover: "#334155"
+    },
+    light: {
+      bg: "bg-white",
+      border: "border-gray-200",
+      headerBg: "bg-gray-100",
+      headerBorder: "border-gray-200",
+      headerText: "text-gray-800",
+      bodyText: "text-gray-900",
+      promptUser: "text-green-600",
+      promptDir: "text-blue-600",
+      cursor: "#16a34a",
+      scrollbar: "#e5e7eb",
+      scrollbarHover: "#d1d5db"
     }
   };
 
@@ -86,7 +99,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         "  skills         - See my technical stack",
         "  projects       - View my work",
         "  contact        - Get my contact info",
-        "  theme [name]   - Switch terminal theme (classic, midnight)",
+        "  theme [name]   - Switch terminal theme (classic, midnight, light)",
         "  mode [mode]    - Switch system mode (dark, light)",
         "  hack --matrix  - Trigger digital rain sequence",
         "  sudo --reveal  - Reveal hidden system architecture",
@@ -138,7 +151,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     },
     theme: (args) => {
       const newTheme = args?.[0] as Theme;
-      if (newTheme === 'classic' || newTheme === 'midnight') {
+      if (newTheme === 'classic' || newTheme === 'midnight' || newTheme === 'light') {
         setTheme(newTheme);
         setHistory(prev => [
           ...prev,
@@ -149,7 +162,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         setHistory(prev => [
           ...prev,
           <div className="flex gap-2 font-mono items-center">{prompt} <span>theme {args?.[0] || ""}</span></div>,
-          "Usage: theme [classic | midnight]"
+          "Usage: theme [classic | midnight | light]"
         ]);
       }
     },
