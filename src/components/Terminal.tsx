@@ -7,7 +7,7 @@ interface TerminalProps {
   onClose: () => void;
 }
 
-type Theme = 'classic' | 'midnight' | 'light';
+type Theme = 'classic' | 'midnight' | 'light' | 'blue';
 
 const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
   const [theme, setTheme] = useState<Theme>('classic');
@@ -62,6 +62,19 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
       cursor: "#16a34a",
       scrollbar: "#e5e7eb",
       scrollbarHover: "#d1d5db"
+    },
+    blue: {
+      bg: "bg-blue-950",
+      border: "border-blue-500/30",
+      headerBg: "bg-blue-900",
+      headerBorder: "border-blue-500/20",
+      headerText: "text-blue-100",
+      bodyText: "text-blue-50",
+      promptUser: "text-yellow-400",
+      promptDir: "text-cyan-300",
+      cursor: "#60a5fa",
+      scrollbar: "#1e3a8a",
+      scrollbarHover: "#1d4ed8"
     }
   };
 
@@ -99,8 +112,8 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         "  skills         - See my technical stack",
         "  projects       - View my work",
         "  contact        - Get my contact info",
-        "  theme [name]   - Switch terminal theme (classic, midnight, light)",
-        "  mode [mode]    - Switch system mode (dark, light)",
+        "  theme [name]   - Switch terminal theme (classic, midnight, light, blue)",
+        "  mode [mode]    - Switch system mode (dark, light, blue)",
         "  hack --matrix  - Trigger digital rain sequence",
         "  sudo --reveal  - Reveal hidden system architecture",
         "  whoami         - Display current user identity",
@@ -151,7 +164,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
     },
     theme: (args) => {
       const newTheme = args?.[0] as Theme;
-      if (newTheme === 'classic' || newTheme === 'midnight' || newTheme === 'light') {
+      if (newTheme === 'classic' || newTheme === 'midnight' || newTheme === 'light' || newTheme === 'blue') {
         setTheme(newTheme);
         setHistory(prev => [
           ...prev,
@@ -162,25 +175,20 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         setHistory(prev => [
           ...prev,
           <div className="flex gap-2 font-mono items-center">{prompt} <span>theme {args?.[0] || ""}</span></div>,
-          "Usage: theme [classic | midnight | light]"
+          "Usage: theme [classic | midnight | light | blue]"
         ]);
       }
     },
     mode: (args) => {
       const mode = args?.[0]?.toLowerCase();
-      const targetMode = (mode === 'dark' || mode === 'd') ? 'dark' : (mode === 'light' || mode === 'l') ? 'light' : null;
+      const targetMode = (mode === 'dark' || mode === 'd') ? 'dark' : (mode === 'light' || mode === 'l') ? 'light' : (mode === 'blue' || mode === 'b') ? 'blue' : null;
 
       if (targetMode) {
         const html = document.documentElement;
-        if (targetMode === 'dark') {
-          html.classList.remove('light');
-          html.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          html.classList.remove('dark');
-          html.classList.add('light');
-          localStorage.setItem('theme', 'light');
-        }
+        html.classList.remove('light', 'dark', 'blue');
+        html.classList.add(targetMode);
+        localStorage.setItem('theme', targetMode);
+        
         window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: targetMode } }));
         setHistory(prev => [
           ...prev,
@@ -191,7 +199,7 @@ const Terminal: React.FC<TerminalProps> = ({ isOpen, onClose }) => {
         setHistory(prev => [
           ...prev,
           <div className="flex gap-2 font-mono items-center">{prompt} <span>mode {args?.[0] || ""}</span></div>,
-          "Usage: mode [dark (d) | light (l)]"
+          "Usage: mode [dark (d) | light (l) | blue (b)]"
         ]);
       }
     },
