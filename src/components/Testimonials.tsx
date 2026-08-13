@@ -18,7 +18,7 @@ const testimonials = [
   },
   {
     name: "Iradukunda Joyeuse",
-    role: "Senior Software Engineer",
+    role: "FULL-STACK DEVELOPER",
     content: "The penetration testing Moise performed on our systems uncovered critical vulnerabilities we hadn't even considered. His report was thorough, actionable, and vital to our security.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
   }
