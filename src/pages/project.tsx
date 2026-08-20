@@ -23,7 +23,7 @@ const ProjectPage = () => {
       description: "A government transparency platform that helps citizens share their problems with the government to be solved.",
       technologies: ["React", "Node.js", "MongoDB", "Express"],
       github: "https://github.com/A2kmoise/PublicPusle-fullStuck",
-      demo: "https://publicpulse-eosin.vercel.app/"
+      demo: "https://publicpulsegov.vercel.app/"
     },
     {
       title: "E-commerce API",
@@ -87,7 +87,7 @@ demo:"https://bora-ai-web.vercel.app/"
       description: "A blog management app designed for author and blog readers as a platform for sharing news and updates",
       technologies: ["React","typescript", "TailwindCSS"],
       github: "https://github.com/A2kmoise/ibihe",
-      demo: "https://project-ylyx8.vercel.app/"
+      demo: "https://menyablog.vercel.app/"
     }
   ];
 
