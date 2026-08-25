@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://abayo-moise.vercel.app/sitemap.xml
+Sitemap: https://abmoise.vercel.app/sitemap.xml
