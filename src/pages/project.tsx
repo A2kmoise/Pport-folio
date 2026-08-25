@@ -9,11 +9,47 @@ import Bora from "@/assets/bora.png";
 import menya from "@/assets/menya.png";
 import { useNavigate } from "react-router-dom";
 import { Github, ExternalLink, ChevronRight, Pointer } from "lucide-react";
+import SEO from "@/components/SEO";
+
+const projectsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Featured Software & Engineering Projects by ABAYO Moise",
+  "description": "Selected showcase of full-stack web applications, APIs, and AI integrations built by ABAYO Moise.",
+  "itemListElement": [
+    {
+      "@type": "SoftwareApplication",
+      "position": 1,
+      "name": "PublicPulse",
+      "applicationCategory": "Government Transparency Platform",
+      "operatingSystem": "Web",
+      "description": "A government transparency platform that helps citizens share their problems with the government."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "position": 2,
+      "name": "E-commerce API",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "description": "A RESTful API for an e-commerce platform for buyer and vendor management."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "position": 3,
+      "name": "BORA AI",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "AI-powered candidate screening and recruitment workflow automation."
+    }
+  ]
+};
+
 const ProjectPage = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filters = ["All", "Frontend", "Backend", "Fullstack"];
+
 
   const projects = [
     {
@@ -97,6 +133,12 @@ demo:"https://bora-ai-web.vercel.app/"
 
   return (
     <div className="min-h-screen px-6 py-24 bg-background text-foreground relative overflow-hidden">
+      <SEO
+        title="Projects & Work Showcase"
+        description="Explore full-stack software development projects, REST APIs, microservices, and AI integrations engineered by ABAYO Moise."
+        keywords="ABAYO Moise Projects, Full-Stack Apps, React Showcase, NestJS API, Spring Boot, Node.js, AI Projects"
+        jsonLd={projectsJsonLd}
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <button
