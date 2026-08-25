@@ -16,7 +16,7 @@ const DEFAULT_SEO = {
     "Professional portfolio of ABAYO Moise — Senior Full-Stack Developer & Cybersecurity Expert specializing in React, Node.js, NestJS, Spring Boot, and penetration testing.",
   keywords:
     "ABAYO Moise, Full-Stack Developer, Cybersecurity Expert, React Developer, Spring Boot Developer, NestJS, Software Engineer Rwanda, Penetration Testing, Web Security",
-  siteUrl: "https://abayo-moise.vercel.app", // Fallback URL
+  siteUrl: "https://abmoise.vercel.app",
   ogImage: "/favicon.png",
 };
 
