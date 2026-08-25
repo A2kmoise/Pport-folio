@@ -2,6 +2,26 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield, Award, Lock, Eye } from "lucide-react";
 import intro_Cyber from "../assets/intro-Cyber.png";
+import SEO from "@/components/SEO";
+
+const certsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Cybersecurity & Engineering Certifications of ABAYO Moise",
+  "itemListElement": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "position": 1,
+      "name": "Introduction to Cybersecurity",
+      "credentialCategory": "Certification",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Cisco"
+      },
+      "description": "Advanced understanding on Cybersecurity and improved skills on Ethical hacking"
+    }
+  ]
+};
 
 const CertificatePage = () => {
   const navigate = useNavigate();
@@ -19,6 +39,12 @@ const CertificatePage = () => {
 
   return (
     <div className="min-h-screen px-6 py-24 bg-background text-foreground relative overflow-hidden">
+      <SEO
+        title="Cybersecurity Certifications & Credentials"
+        description="Verified cybersecurity credentials and technical certifications earned by ABAYO Moise, including Cisco Introduction to Cybersecurity."
+        keywords="ABAYO Moise Certifications, Cisco Cybersecurity, Ethical Hacking, Web Security Certification, Security Credentials"
+        jsonLd={certsJsonLd}
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <button
