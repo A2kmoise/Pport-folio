@@ -13,7 +13,7 @@ const homeJsonLd = [
     "@type": "Person",
     "name": "ABAYO Moise",
     "jobTitle": "Full-Stack Developer & Cybersecurity Specialist",
-    "url": "https://abayo-moise.vercel.app",
+    "url": "https://abmoise.vercel.app",
     "email": "mailto:abayomoise950@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -40,7 +40,7 @@ const homeJsonLd = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "ABAYO Moise Portfolio",
-    "url": "https://abayo-moise.vercel.app",
+    "url": "https://abmoise.vercel.app",
     "author": {
       "@type": "Person",
       "name": "ABAYO Moise"
