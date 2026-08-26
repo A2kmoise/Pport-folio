@@ -35,6 +35,7 @@ export const SEO = ({
     const metaDescription = description || DEFAULT_SEO.description;
     const metaKeywords = keywords || DEFAULT_SEO.keywords;
     const metaOgImage = ogImage || DEFAULT_SEO.ogImage;
+    const canonicalUrl = `${DEFAULT_SEO.siteUrl}${location.pathname}`;
     const currentUrl = `${window.location.origin}${location.pathname}`;
 
     // Update document title
@@ -86,7 +87,7 @@ export const SEO = ({
     updateMetaTag('meta[name="twitter:image"]', "content", metaOgImage);
 
     // Canonical URL
-    updateLinkTag("canonical", currentUrl);
+    updateLinkTag("canonical", canonicalUrl);
 
     // Structured Data (JSON-LD)
     const scriptId = "json-ld-seo";
