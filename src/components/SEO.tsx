@@ -13,11 +13,11 @@ interface SEOProps {
 const DEFAULT_SEO = {
   title: "ABAYO Moise | Senior Full-Stack Developer & Cybersecurity Expert",
   description:
-    "Professional portfolio of ABAYO Moise — Senior Full-Stack Developer & Cybersecurity Expert specializing in React, Node.js, NestJS, Spring Boot, and penetration testing.",
+    "Professional portfolio of ABAYO Moise — Senior Full-Stack Developer & Cybersecurity Expert specializing in React, Node.js, NestJS, Spring Boot, and penetration testing. Based in Kigali, Rwanda.",
   keywords:
-    "ABAYO Moise, Full-Stack Developer, Cybersecurity Expert, React Developer, Spring Boot Developer, NestJS, Software Engineer Rwanda, Penetration Testing, Web Security",
+    "ABAYO Moise, Full-Stack Developer, Cybersecurity Expert, React Developer, Spring Boot Developer, NestJS, Software Engineer Rwanda, Penetration Testing, Web Security, Java Developer, TypeScript Developer, Kigali Tech, Rwanda Developer, REST API, PostgreSQL, MongoDB, Web Development Portfolio",
   siteUrl: "https://abmoise.vercel.app",
-  ogImage: "/favicon.png",
+  ogImage: "https://abmoise.vercel.app/favicon.png",
 };
 
 export const SEO = ({
@@ -78,13 +78,20 @@ export const SEO = ({
     updateMetaTag('meta[property="og:type"]', "content", ogType);
     updateMetaTag('meta[property="og:url"]', "content", currentUrl);
     updateMetaTag('meta[property="og:image"]', "content", metaOgImage);
+    updateMetaTag('meta[property="og:image:width"]', "content", "1200");
+    updateMetaTag('meta[property="og:image:height"]', "content", "630");
+    updateMetaTag('meta[property="og:image:alt"]', "content", fullTitle);
     updateMetaTag('meta[property="og:site_name"]', "content", "ABAYO Moise Portfolio");
+    updateMetaTag('meta[property="og:locale"]', "content", "en_US");
 
     // Twitter Card Meta Tags
     updateMetaTag('meta[name="twitter:card"]', "content", "summary_large_image");
     updateMetaTag('meta[name="twitter:title"]', "content", fullTitle);
     updateMetaTag('meta[name="twitter:description"]', "content", metaDescription);
     updateMetaTag('meta[name="twitter:image"]', "content", metaOgImage);
+    updateMetaTag('meta[name="twitter:image:alt"]', "content", fullTitle);
+    updateMetaTag('meta[name="twitter:site"]', "content", "@abayomoise");
+    updateMetaTag('meta[name="twitter:creator"]', "content", "@abayomoise");
 
     // Canonical URL
     updateLinkTag("canonical", canonicalUrl);
@@ -92,7 +99,7 @@ export const SEO = ({
     // Structured Data (JSON-LD)
     const scriptId = "json-ld-seo";
     let scriptElement = document.getElementById(scriptId) as HTMLScriptElement | null;
-    
+
     if (jsonLd) {
       if (!scriptElement) {
         scriptElement = document.createElement("script");
