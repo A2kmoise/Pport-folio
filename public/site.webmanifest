@@ -1,21 +1,24 @@
 {
-  "name": "ABAYO Moise | Developer Portfolio",
-  "short_name": "ABAYO Moise",
+  "name": "ABAYO Moise Portfolio",
+  "short_name": "AB Moise",
+  "description": "Professional portfolio of ABAYO Moise — Full-Stack Developer & Cybersecurity Expert",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0c",
   "theme_color": "#0a0a0c",
-  "description": "Full-Stack Developer & Cybersecurity Expert Portfolio",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/favicon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/favicon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
