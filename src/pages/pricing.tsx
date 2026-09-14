@@ -1,14 +1,13 @@
 import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  ShieldCheck,
+  Server,
   Check,
   Sparkles,
   Clock,
   ArrowRight,
   Layers,
   Lock,
-  Server,
   Zap,
   HelpCircle,
   Mail,
@@ -19,7 +18,9 @@ import {
   Sliders,
   CheckCircle2,
   Smartphone,
-  Database
+  Database,
+  Cpu,
+  ShieldCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -35,7 +36,7 @@ import SEO from "@/components/SEO";
 const pricingJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Software Development & Cybersecurity Services",
+  "name": "Software Development & Backend API Crafting Services",
   "provider": {
     "@type": "Person",
     "name": "ABAYO Moise"
@@ -43,12 +44,12 @@ const pricingJsonLd = {
   "areaServed": "Worldwide",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Software & Security Delivery Packages",
+    "name": "Software & Backend Delivery Packages",
     "itemListElement": [
       {
         "@type": "Offer",
-        "name": "MVP & Core Systems Delivery",
-        "description": "Rapid, high-performance web applications and secure API backends for startups and MVPs.",
+        "name": "MVP & Core Web",
+        "description": "Rapid, high-performance web applications and responsive UI for startups and MVPs.",
         "priceSpecification": {
           "@type": "PriceSpecification",
           "price": "1800",
@@ -57,21 +58,21 @@ const pricingJsonLd = {
       },
       {
         "@type": "Offer",
-        "name": "Full-Stack & Hardened Platform",
-        "description": "Enterprise-ready full-stack architecture with Spring Boot or NestJS and OWASP security auditing.",
+        "name": "Backend API Crafting",
+        "description": "High-throughput, secure server-side architecture and RESTful APIs with Spring Boot, NestJS, and PostgreSQL.",
         "priceSpecification": {
           "@type": "PriceSpecification",
-          "price": "3600",
+          "price": "2600",
           "priceCurrency": "USD"
         }
       },
       {
         "@type": "Offer",
-        "name": "Enterprise Penetration Testing & Retainer",
-        "description": "Comprehensive ethical hacking, vulnerability assessments, and dedicated engineering advisory.",
+        "name": "Full-Stack & Hardened Platform",
+        "description": "Comprehensive full-stack web ecosystem with React frontend, Spring Boot backend, Docker CI/CD, and security hardening.",
         "priceSpecification": {
           "@type": "PriceSpecification",
-          "price": "5500",
+          "price": "3800",
           "priceCurrency": "USD"
         }
       }
@@ -124,48 +125,76 @@ const PRICING_TIERS: PricingTier[] = [
     ]
   },
   {
+    id: "backend",
+    name: "Backend API Crafting",
+    badge: "CORE SPECIALIZATION",
+    tagline: "High-Throughput, Secure & Scalable APIs",
+    projectPrice: "$2,600",
+    projectPeriod: "Fixed Scope • 3-4 Weeks",
+    retainerPrice: "$3,000",
+    retainerPeriod: "/ Month • Dedicated Backend Capacity",
+    description:
+      "Specialized high-performance server systems, microservices, and database optimization engineered with Java Spring Boot, NestJS, or Node.js.",
+    features: [
+      "Production RESTful or GraphQL API (Java Spring Boot, NestJS, or Express)",
+      "Relational & NoSQL database schema design (PostgreSQL / MongoDB / MySQL)",
+      "Advanced authentication & RBAC (JWT, OAuth2, session guards)",
+      "Redis caching, background workers & rate limiting algorithms",
+      "Comprehensive Swagger / OpenAPI documentation & Postman collections",
+      "Input validation, sanitization & SQL injection defense",
+      "Automated unit & integration test suites (JUnit / Jest)",
+      "Docker containerization & cloud hosting setup (AWS / Render)"
+    ],
+    deliverables: [
+      "Production backend API",
+      "Interactive Swagger / OpenAPI docs",
+      "Database schema & migrations",
+      "Docker container pipeline"
+    ]
+  },
+  {
     id: "fullstack",
     name: "Full-Stack & Security",
     badge: "MOST POPULAR",
     isPopular: true,
-    tagline: "High-Performance Enterprise System",
-    projectPrice: "$3,600",
+    tagline: "Complete End-to-End Ecosystem",
+    projectPrice: "$3,800",
     projectPeriod: "Fixed Scope • 4-6 Weeks",
-    retainerPrice: "$4,000",
+    retainerPrice: "$4,200",
     retainerPeriod: "/ Month • 40 hrs / wk",
     description:
-      "End-to-end full-stack software built for scale, performance, and defense against real-world vulnerabilities and high concurrency.",
+      "Complete web ecosystem combining bespoke React/Next.js frontend with hardened Spring Boot / NestJS APIs, cloud DevOps, and production monitoring.",
     features: [
-      "Everything in MVP & Core Web",
-      "Enterprise backend architecture (Spring Boot or NestJS microservices)",
-      "Complex relational database design with indexing & Redis caching",
-      "OWASP Top 10 vulnerability assessment & penetration audit",
+      "Everything in MVP & Backend API Crafting",
+      "Seamless Full-Stack integration & real-time state synchronization",
+      "Real-time communication (WebSockets, live streaming events)",
+      "Optimized relational transactions, caching & database indexing",
       "Automated CI/CD workflows & Docker containerization",
       "Third-party integrations (Stripe, EmailJS, Webhooks, AI LLMs)",
-      "Interactive data dashboards & real-time features (WebSockets)",
+      "OWASP security compliance & vulnerability defense",
       "30 days dedicated post-launch support & performance tuning"
     ],
     deliverables: [
-      "Scalable web platform",
-      "Security audit report",
-      "CI/CD infrastructure",
-      "Architecture diagram"
+      "Complete full-stack platform",
+      "Architecture blueprint & API docs",
+      "CI/CD deployment pipeline",
+      "30 days post-launch warranty"
     ]
   }
 ];
 
 const COMPARISON_FEATURES = [
-  { feature: "Responsive React / Next.js Frontend", mvp: true, fullstack: true, enterprise: true },
-  { feature: "Backend API (Express / Spring Boot / NestJS)", mvp: true, fullstack: true, enterprise: true },
-  { feature: "Database Architecture (Postgres / Mongo)", mvp: true, fullstack: true, enterprise: true },
-  { feature: "Role-Based Access Control & Auth", mvp: true, fullstack: true, enterprise: true },
-  { feature: "Third-party Integrations (Payments / APIs)", mvp: "Basic", fullstack: "Advanced", enterprise: "Unlimited" },
-  { feature: "OWASP Top 10 Security Audit", mvp: "Baseline", fullstack: "Comprehensive", enterprise: "Full Pen-Test" },
-  { feature: "Automated CI/CD & Docker Containerization", mvp: false, fullstack: true, enterprise: true },
-  { feature: "Redis Caching & Concurrency Optimization", mvp: false, fullstack: true, enterprise: true },
-  { feature: "Executive Penetration Testing Report", mvp: false, fullstack: false, enterprise: true },
-  { feature: "Post-Launch Warranty", mvp: "14 Days", fullstack: "30 Days", enterprise: "60 Days" },
-  { feature: "100% Source Code & IP Transfer", mvp: true, fullstack: true, enterprise: true }
+  { feature: "Responsive Frontend UI (React / Next.js)", mvp: true, backend: "API Docs / Client SDK", fullstack: true },
+  { feature: "Backend API Engine (Spring Boot / NestJS)", mvp: "Express Core", backend: "Enterprise Core", fullstack: "Enterprise Core" },
+  { feature: "Database Architecture & Migrations", mvp: "Basic", backend: "Optimized & Indexed", fullstack: "Optimized & Indexed" },
+  { feature: "Role-Based Access Control & Auth (JWT / OAuth)", mvp: true, backend: true, fullstack: true },
+  { feature: "Redis Caching & Queue Management", mvp: false, backend: true, fullstack: true },
+  { feature: "Interactive Swagger / OpenAPI Documentation", mvp: "Basic", backend: "Comprehensive", fullstack: "Comprehensive" },
+  { feature: "Third-party Integrations (Payments / APIs / AI)", mvp: "Standard", backend: "Advanced", fullstack: "Unlimited" },
+  { feature: "Automated CI/CD & Docker Containerization", mvp: false, backend: true, fullstack: true },
+  { feature: "OWASP Security Hardening & Rate Limiting", mvp: "Baseline", backend: "Hardened Endpoints", fullstack: "Full-Stack Defense" },
+  { feature: "Post-Launch Warranty", mvp: "14 Days", backend: "30 Days", fullstack: "45 Days" },
+  { feature: "100% Source Code & IP Transfer", mvp: true, backend: true, fullstack: true }
 ];
 
 const FAQ_ITEMS = [
@@ -175,11 +204,15 @@ const FAQ_ITEMS = [
   },
   {
     q: "Will you sign a Non-Disclosure Agreement (NDA)?",
-    a: "Yes, without hesitation. All client discussions, business concepts, source code, and security vulnerability findings are handled under strict confidentiality. Mutual NDAs can be executed prior to any discovery call."
+    a: "Yes, without hesitation. All client discussions, business concepts, source code, and API architecture specifications are handled under strict confidentiality. Mutual NDAs can be executed prior to any discovery call."
   },
   {
-    q: "What technical stack do you primarily specialize in?",
-    a: "My primary production stacks include React, TypeScript, Tailwind CSS, and Next.js on the frontend; Java / Spring Boot, NestJS, and Node.js on the backend; PostgreSQL, MongoDB, and Redis for storage; along with Docker and AWS for DevOps. In cybersecurity, I apply Cisco-certified penetration testing and ethical hacking methodologies."
+    q: "What backend frameworks and databases do you specialize in?",
+    a: "My primary backend specializations include Java & Spring Boot, NestJS, and Node.js / Express. For data persistence, I work with PostgreSQL, MongoDB, MySQL, and Redis for caching and high-concurrency message queues. APIs are delivered with interactive Swagger / OpenAPI documentation."
+  },
+  {
+    q: "Can I hire you solely for Backend API Crafting?",
+    a: "Yes, absolutely! The Backend API Crafting tier is designed specifically for teams who already have a frontend team or mobile developers and need a robust, scalable, and documented server-side API with Spring Boot or NestJS."
   },
   {
     q: "Can I customize a package to match specific budget constraints?",
@@ -187,7 +220,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "What warranty and post-delivery support do you provide?",
-    a: "Every project includes a complimentary warranty period (ranging from 14 to 60 days based on tier) during which any bugs or regressions related to the agreed scope are patched immediately at zero extra cost. For long-term continuity, monthly maintenance retainers are also available."
+    a: "Every project includes a complimentary warranty period (ranging from 14 to 45 days based on tier) during which any bugs or regressions related to the agreed scope are patched immediately at zero extra cost. For long-term continuity, monthly maintenance retainers are also available."
   },
   {
     q: "How do you handle collaboration across different time zones?",
@@ -201,8 +234,8 @@ const PricingPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Estimator State
-  const [platformType, setPlatformType] = useState<string>("fullstack");
-  const [securityLevel, setSecurityLevel] = useState<string>("owasp");
+  const [platformType, setPlatformType] = useState<string>("backend");
+  const [backendComplexity, setBackendComplexity] = useState<string>("microservices");
   const [databaseType, setDatabaseType] = useState<string>("postgres");
   const [timelineSpeed, setTimelineSpeed] = useState<string>("standard");
 
@@ -212,14 +245,14 @@ const PricingPage: React.FC = () => {
     // Platform
     if (platformType === "landing") total += 1200;
     else if (platformType === "mvp") total += 1800;
-    else if (platformType === "fullstack") total += 3600;
+    else if (platformType === "backend") total += 2600;
+    else if (platformType === "fullstack") total += 3800;
     else if (platformType === "mobile") total += 3200;
-    else if (platformType === "api") total += 2200;
 
-    // Security
-    if (securityLevel === "standard") total += 0;
-    else if (securityLevel === "owasp") total += 800;
-    else if (securityLevel === "fullpentest") total += 1600;
+    // Backend Complexity
+    if (backendComplexity === "rest") total += 0;
+    else if (backendComplexity === "microservices") total += 800;
+    else if (backendComplexity === "enterprise") total += 1500;
 
     // Database
     if (databaseType === "postgres") total += 400;
@@ -232,14 +265,14 @@ const PricingPage: React.FC = () => {
     }
 
     return total;
-  }, [platformType, securityLevel, databaseType, timelineSpeed]);
+  }, [platformType, backendComplexity, databaseType, timelineSpeed]);
 
   return (
     <div className="min-h-screen px-6 py-24 bg-background text-foreground relative overflow-hidden">
       <SEO
-        title="Software Delivery & Pricing Packages"
-        description="Explore clear, transparent pricing packages for full-stack software development, Spring Boot APIs, React applications, and cybersecurity penetration testing by ABAYO Moise."
-        keywords="ABAYO Moise Pricing, Software Development Packages, Web Development Cost, Penetration Testing Rates, Freelance Fullstack Engineer, Spring Boot Developer Rates, React Developer Rates"
+        title="Software Delivery & Backend API Crafting Pricing"
+        description="Transparent pricing packages for backend API crafting, Spring Boot microservices, React full-stack applications, and secure systems by ABAYO Moise."
+        keywords="ABAYO Moise Pricing, Backend API Crafting, Spring Boot Developer Rates, NestJS API Development, Full-Stack Software Packages, PostgreSQL API Developer, Freelance Backend Engineer"
         jsonLd={pricingJsonLd}
       />
 
@@ -263,7 +296,7 @@ const PricingPage: React.FC = () => {
           </h1>
           <div className="w-24 h-px bg-primary/30 mx-auto mb-6" />
           <p className="text-foreground/70 max-w-2xl mx-auto leading-relaxed font-light text-base sm:text-lg">
-            Engineering excellence combined with security-first architecture. Clear scopes, predictable investments, and zero hidden surprises.
+            Engineering excellence, robust backend API crafting, and secure full-stack architecture. Clear scopes, predictable investments, and zero surprises.
           </p>
 
           {/* Billing Mode Toggle */}
@@ -415,11 +448,11 @@ const PricingPage: React.FC = () => {
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {[
-                  { id: "landing", label: "Marketing & Landing", cost: "$1,200" },
+                  { id: "backend", label: "Backend API Crafting", cost: "$2,600" },
+                  { id: "fullstack", label: "Fullstack Platform", cost: "$3,800" },
                   { id: "mvp", label: "Web MVP & API", cost: "$1,800" },
-                  { id: "fullstack", label: "Fullstack Platform", cost: "$3,600" },
                   { id: "mobile", label: "React Native Mobile", cost: "$3,200" },
-                  { id: "api", label: "Backend Microservices", cost: "$2,200" }
+                  { id: "landing", label: "Marketing & Landing", cost: "$1,200" }
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -436,21 +469,21 @@ const PricingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Control 2: Security Level */}
+            {/* Control 2: Backend & Security Complexity */}
             <div className="space-y-3">
               <label className="text-xs uppercase tracking-[0.2em] text-foreground/60 font-medium block">
-                2. Cybersecurity & Hardening Depth
+                2. Backend Architecture & Hardening Depth
               </label>
               <div className="grid grid-cols-1 gap-2">
                 {[
-                  { id: "standard", label: "Standard Hardening (Headers, CORS, Rate Limit)", cost: "+$0" },
-                  { id: "owasp", label: "OWASP Top 10 Assessment & Vulnerability Audit", cost: "+$800" },
-                  { id: "fullpentest", label: "Ethical Hacking & Deep Penetration Testing", cost: "+$1,600" }
+                  { id: "rest", label: "Standard RESTful API & Authentication (JWT)", cost: "+$0" },
+                  { id: "microservices", label: "Microservices Architecture & Redis Caching", cost: "+$800" },
+                  { id: "enterprise", label: "Enterprise Concurrency, Queues & Security Hardening", cost: "+$1,500" }
                 ].map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => setSecurityLevel(item.id)}
-                    className={`p-3 text-left border transition-all text-xs flex items-center justify-between ${securityLevel === item.id
+                    onClick={() => setBackendComplexity(item.id)}
+                    className={`p-3 text-left border transition-all text-xs flex items-center justify-between ${backendComplexity === item.id
                         ? "border-primary bg-primary/10 text-primary font-medium"
                         : "border-primary/10 bg-background/40 text-foreground/70 hover:border-primary/30"
                       }`}
@@ -469,9 +502,9 @@ const PricingPage: React.FC = () => {
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {[
-                  { id: "serverless", label: "Serverless DB", cost: "+$200" },
-                  { id: "postgres", label: "PostgreSQL / Mongo", cost: "+$400" },
-                  { id: "distributed", label: "Redis + Clusters", cost: "+$900" }
+                  { id: "postgres", label: "PostgreSQL / MySQL", cost: "+$400" },
+                  { id: "distributed", label: "Redis + Clusters", cost: "+$900" },
+                  { id: "serverless", label: "Serverless DB", cost: "+$200" }
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -495,7 +528,7 @@ const PricingPage: React.FC = () => {
               </label>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { id: "standard", label: "Standard Sprint (4-6 Wks)", cost: "Normal Rate" },
+                  { id: "standard", label: "Standard Sprint (3-5 Wks)", cost: "Normal Rate" },
                   { id: "expedited", label: "Fast-Track Priority (2-3 Wks)", cost: "+25% Acceleration" }
                 ].map((item) => (
                   <button
@@ -563,13 +596,13 @@ const PricingPage: React.FC = () => {
                     Capability / Deliverable
                   </th>
                   <th className="p-4 sm:p-5 text-foreground/80 font-medium tracking-wider uppercase text-xs text-center">
-                    MVP & Core
+                    MVP & Core Web
                   </th>
                   <th className="p-4 sm:p-5 text-primary font-semibold tracking-wider uppercase text-xs text-center bg-primary/10">
-                    Full-Stack & Security
+                    Backend API Crafting
                   </th>
                   <th className="p-4 sm:p-5 text-foreground/80 font-medium tracking-wider uppercase text-xs text-center">
-                    Enterprise & Audit
+                    Full-Stack Suite
                   </th>
                 </tr>
               </thead>
@@ -589,6 +622,19 @@ const PricingPage: React.FC = () => {
                       )}
                     </td>
                     <td className="p-4 sm:p-5 text-center bg-primary/[0.03]">
+                      {typeof row.backend === "boolean" ? (
+                        row.backend ? (
+                          <Check className="w-4 h-4 text-primary mx-auto" />
+                        ) : (
+                          <span className="text-foreground/30 font-mono">—</span>
+                        )
+                      ) : (
+                        <span className="text-primary font-medium font-mono text-xs">
+                          {row.backend}
+                        </span>
+                      )}
+                    </td>
+                    <td className="p-4 sm:p-5 text-center">
                       {typeof row.fullstack === "boolean" ? (
                         row.fullstack ? (
                           <Check className="w-4 h-4 text-primary mx-auto" />
@@ -596,21 +642,8 @@ const PricingPage: React.FC = () => {
                           <span className="text-foreground/30 font-mono">—</span>
                         )
                       ) : (
-                        <span className="text-primary font-medium font-mono text-xs">
-                          {row.fullstack}
-                        </span>
-                      )}
-                    </td>
-                    <td className="p-4 sm:p-5 text-center">
-                      {typeof row.enterprise === "boolean" ? (
-                        row.enterprise ? (
-                          <Check className="w-4 h-4 text-primary mx-auto" />
-                        ) : (
-                          <span className="text-foreground/30 font-mono">—</span>
-                        )
-                      ) : (
                         <span className="text-foreground/70 font-mono text-xs">
-                          {row.enterprise}
+                          {row.fullstack}
                         </span>
                       )}
                     </td>
@@ -635,22 +668,22 @@ const PricingPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                icon: ShieldCheck,
-                title: "Independent Security Audit",
-                price: "$1,200",
-                description: "Full ethical penetration test on existing applications with vulnerability remediation guidance."
+                icon: Cpu,
+                title: "Microservices & API Migration",
+                price: "$1,100",
+                description: "Refactor legacy monoliths into distributed Spring Boot / NestJS microservices with gRPC or REST communication."
               },
               {
                 icon: Server,
                 title: "Cloud & DevOps Automation",
                 price: "$950",
-                description: "Dockerization, multi-stage CI/CD pipelines, SSL certificates, and scalable server provisioning."
+                description: "Dockerization, multi-stage CI/CD pipelines, SSL certificates, reverse proxies (Nginx), and scalable server provisioning."
               },
               {
-                icon: Zap,
-                title: "Performance & Code Refactor",
+                icon: Database,
+                title: "Database Tuning & Query Optimization",
                 price: "$850",
-                description: "Database query optimization, API latency reduction, memory leak patches, and frontend bundle tuning."
+                description: "PostgreSQL query optimization, schema indexing, Redis caching layers, connection pooling, and latency reduction."
               }
             ].map((addon, aIdx) => (
               <div
@@ -716,10 +749,10 @@ const PricingPage: React.FC = () => {
               Ready to Build?
             </p>
             <h2 className="text-3xl sm:text-5xl font-serif text-primary leading-tight">
-              Have a Custom Vision or Tight Deadline?
+              Need a Tailored API Architecture or Full-Stack Build?
             </h2>
             <p className="text-foreground/70 font-light text-base sm:text-lg leading-relaxed">
-              Reach out today to discuss your architecture, confirm timeline availability, and receive a formal tailored proposal.
+              Reach out today to discuss your endpoints, data model, and technical requirements, and receive a formal milestone proposal.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
