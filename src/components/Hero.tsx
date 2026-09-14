@@ -4,6 +4,7 @@ import heroImage from "@/assets/hero-bg.jpg";
 import profileImage from "@/assets/profile.jpg";
 import ContactModal from "./ContactModal";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +45,7 @@ const Hero = () => {
               Portfolio
             </p>
             <h1 className="text-4xl xs:text-5xl md:text-6xl lg:text-8xl font-serif text-primary leading-[1.1] animate-fade-in animation-delay-300">
-             
+
               <span className="italic opacity-90"> ABAYO Moise</span>
             </h1>
           </div>
@@ -85,9 +86,11 @@ const Hero = () => {
               variant="outline"
               size="lg"
               className="rounded-none px-10 h-14 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 tracking-wider w-full sm:w-auto"
-              onClick={() => setIsModalOpen(true)}
+              asChild
             >
-              GET IN TOUCH
+              <Link to="/pricing">
+                DELIVERY
+              </Link>
             </Button>
           </div>
 
