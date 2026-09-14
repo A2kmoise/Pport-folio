@@ -9,7 +9,8 @@ import Footer from "@/components/Footer";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProjectPage from "./pages/project";
-import CertificatePage from "./pages/certificates";
+import CertificatePage from "./pages/certificates";   
+import  PricingPage  from "./pages/pricing";
 import ScrollToTop from "./components/ScrollToTop";
 import Terminal from "@/components/Terminal";
 import { Terminal as TerminalIcon } from "lucide-react";
@@ -43,6 +44,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/projects" element={<ProjectPage />} />
             <Route path="/certificates" element={<CertificatePage />} />
+            <Route path="/pricing" element={<PricingPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
