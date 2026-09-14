@@ -2,6 +2,7 @@ import { useRef, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import samPhoto from "@/assets/testimonials/sam.png";
 
 const testimonials = [
   {
@@ -14,7 +15,7 @@ const testimonials = [
     name: "Byiringiro Samuel",
     role: "C0-Founder, BlinkTech",
     content: "Working with him was a great experience. He’s creative, skilled, and always pays attention to detail when building projects. His work is clean, modern, and user friendly, and he’s clearly passionate about development.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Samuel"
+    avatar: samPhoto
   },
   {
     name: "Iradukunda Joyeuse",
@@ -93,12 +94,12 @@ const Testimonials = () => {
                     </div>
 
                     <div className="mt-12 flex items-center gap-4">
-                      <div className="relative w-14 h-14 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                      <div className="relative w-14 h-14 shrink-0 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                         <div className="absolute inset-0 border border-primary/20" />
                         <img
                           src={testimonial.avatar}
                           alt={testimonial.name}
-                          className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+                          className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700"
                         />
                       </div>
                       <div>
