@@ -97,7 +97,7 @@ const Hero = () => {
           <div className="flex justify-center md:justify-start gap-8 pt-8 animate-fade-in animation-delay-1000">
             {[
               { icon: Github, href: "https://github.com/A2kmoise" },
-              { icon: Linkedin, href: "https://rw.linkedin.com/in/abayo-moise-3568b7377" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/abayo-mo%C3%AFse-3568b7377/" },
               { icon: Mail, href: "mailto:abayomoise950@gmail.com" }
             ].map((social, i) => (
               <a
