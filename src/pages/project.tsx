@@ -121,7 +121,7 @@ demo:"https://bora-ai-web.vercel.app/"
       category: "Fullstack",
       image: menya,
       description: "A blog management app designed for author and blog readers as a platform for sharing news and updates",
-      technologies: ["React","typescript", "TailwindCSS"],
+      technologies: ["React","typescript", "TailwindCSS", "Spring Boot", "PostgreSQL", "JWT"],
       github: "https://github.com/A2kmoise/ibihe",
       demo: "https://menyablog.vercel.app/"
     }
