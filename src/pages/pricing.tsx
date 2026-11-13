@@ -706,7 +706,7 @@ const PricingPage: React.FC = () => {
                   onClick={() => setIsModalOpen(true)}
                   className="rounded-none border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground text-xs uppercase tracking-wider w-full"
                 >
-                  Add to Project
+                  Add Project
                 </Button>
               </div>
             ))}
